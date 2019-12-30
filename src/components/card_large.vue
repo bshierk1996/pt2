@@ -3,9 +3,9 @@
   <b-card no-body class="overflow-hidden" >
     <b-row no-gutters>
       <b-col md="6">
-        <b-card- >
-          <img src="../assets/bio.jpg" alt="">
-        </b-card->
+        <b-card>
+          <img src="../assets/bio.jpg" alt="" />
+        </b-card>
       </b-col>
       <b-col md="6">
         <b-card-body class ="title1" title="MEET KEISHA VILLARSON">
@@ -25,7 +25,7 @@ You’ve made it this far. You’ve decided that enough is enough and that it's 
 
 <script>
 export default {
-    name: 'Lcard'
+  name: 'Lcard'
 }
 </script>
 

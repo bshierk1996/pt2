@@ -9,7 +9,7 @@
     style="max-width: 20rem;"
     class="mb-2"
   >
-    <b-card-img-src >
+    <b-card-img-src>
       <img src="../assets/img3.jpg" alt="">
     </b-card-img-src>
 

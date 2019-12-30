@@ -7,7 +7,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import mealplan from './components/mealPlanSection.vue'
 import workouts from './components/workouts'
 import realtime from './components/realTimeSection'
-import signup from './components/signupForm'
+// import signup from './components/signupForm'
 Vue.use(VueRouter);
 Vue.use(BootstrapVue);
 
@@ -19,7 +19,7 @@ const router = new VueRouter({
     {path: '/mealplan', component:mealplan},
     {path:'/workouts',component:workouts},
     {path: '/realtime', component:realtime},
-    {path: 'signupForm', component:signup}
+    // {path: '/signupForm', component:signup}
   ],
   mode:'history'
 })
