@@ -1,23 +1,23 @@
 <template>
 
   <div id="app">
-    <HelloWorld />
-    <NavBar />
+    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <!-- <NavBar /> -->
     <Jumbo />
     <b-container>
-      <Lcard />
-      <b-row center>
-        <mealcard />
-        <timecard />
-        <dailycard /> 
-          <!-- <card
-            v-for="item in cardInfo"
-            :key="item.title"
-            :title="item.title"
-            :image="item.image"
-          /> -->
-        </b-row>
-        <router-view></router-view>
+    <Lcard />
+    <b-row center>
+    <mealcard />
+    <timecard />
+    <dailycard /> 
+      <!-- <card
+        v-for="item in cardInfo"
+        :key="item.title"
+        :title="item.title"
+        :image="item.image"
+      /> -->
+      </b-row>
+          <router-view></router-view>
 
     </b-container>
     <community />
