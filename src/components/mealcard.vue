@@ -10,9 +10,9 @@
     style="max-width: 20rem;"
     class="mb-2"
   >
-    <b-card-img src="../assets/img2.jpg">
-      <!-- <img src="../assets/img2.jpg" alt=""> -->
-    </b-card-img>
+    <b-card>
+      <img src="../assets/img2.jpg" alt="">
+    </b-card>
 
     <b-card-text>
       Nutrition is the hardest part and I’ve created an easy to follow nutrition guide with different recipes tailored to your fitness goals. Whether you’re on a pescatarian, standard or plant based diet you’ll have access to delicious guilt free meals. You’ll also have insight on what foods to avoid.
