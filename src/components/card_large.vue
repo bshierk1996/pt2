@@ -4,7 +4,7 @@
     <b-row no-gutters>
       <b-col md="6">
         <b-card>
-          <img src="../assets/bio.jpg" alt="">
+          <img src="../assets/bio.jpg" alt="" />
         </b-card>
       </b-col>
       <b-col md="6">
@@ -25,7 +25,7 @@ You’ve made it this far. You’ve decided that enough is enough and that it's 
 
 <script>
 export default {
-    name: 'Lcard'
+  name: 'Lcard'
 }
 </script>
 

@@ -1,4 +1,5 @@
 <template>
+
   <div id="app">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
     <!-- <NavBar /> -->
@@ -20,6 +21,7 @@
 
     </b-container>
     <community />
+    <!-- <signup /> -->
   </div>
 </template>
 
@@ -28,10 +30,12 @@ import HelloWorld from './components/HelloWorld.vue'
 import Jumbo from './components/jumbotron'
 import Lcard from './components/card_large'
 import dailycard from './components/mealcard'
- import timecard from './components/realtime'
- import mealcard from './components/dailycard'
+import timecard from './components/realtime'
+import mealcard from './components/dailycard'
 import community from './components/community'
 //import card from './components/card'
+// import signup from './components/signupForm'
+// import signUp from './components/newSignUp'
 
 export default {
   name: 'app',
@@ -43,7 +47,8 @@ export default {
      mealcard,
     timecard,
     community,
-    //card
+    // signup,
+    // card,
   },
   data() {
     return {
