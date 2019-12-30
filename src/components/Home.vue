@@ -5,7 +5,7 @@
     <Jumbo />
     <b-container>
     <Lcard />
-    <b-row center>
+    <b-row class="home-cards" center>
     <mealcard />
     <timecard />
     <dailycard /> 
@@ -66,3 +66,18 @@ export default {
   }
 }
 </script>
+
+<style>
+.home-cards {
+  justify-content: center;
+  margin: 20px auto;
+}
+
+.card-body .card {
+  border: none;
+}
+
+/* .card {
+  border: none;
+} */
+</style>

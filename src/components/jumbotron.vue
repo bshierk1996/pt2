@@ -27,8 +27,8 @@ export default {
     height: 100vh;  
     color: ivory;
     background-position-x: -45vh;
-    background-position-y: -21vh;
-
+    background-position-y: -10vh;
+    border-radius: 0;
     
 }
 .header-text{

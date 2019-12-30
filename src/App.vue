@@ -1,16 +1,18 @@
 <template>
 
   <div id="app">
-    <!-- <Nav /> -->
+     <HelloWorld />
     <router-view></router-view>
     <!-- <signup /> -->
   </div>
 </template>
 
 <script>
+import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'app',
+  components: { HelloWorld }
 }
 </script>
 

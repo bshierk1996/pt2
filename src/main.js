@@ -10,6 +10,7 @@ import realtime from './components/realTimeSection'
 import signup from './components/signupForm'
 import Home from './components/Home'
 import DailyWorkouts from './components/DailyWorkouts'
+import { todayProps, yesterdayProps } from './propsconfig'
 
 Vue.use(VueRouter);
 Vue.use(BootstrapVue);
@@ -19,7 +20,16 @@ Vue.config.productionTip = false
 const router = new VueRouter({
   routes:[
     {path: '/', component: Home},
-    {path: '/todays-workout', component: DailyWorkouts},
+    {
+      path: '/todays-workout',
+      component: DailyWorkouts,
+      props: todayProps
+    },
+    {
+      path: '/yesterdays-workout',
+      component: DailyWorkouts,
+      props: yesterdayProps
+    },
     {path: '/mealplan', component: mealplan},
     {path:'/workouts',component: workouts},
     {path: '/realtime', component: realtime},

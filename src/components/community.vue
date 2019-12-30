@@ -29,6 +29,7 @@ div{
     
     background-position-x: center;
     background-position-y: -25vh;
+    background-size: cover;
 
     margin: 0;
     

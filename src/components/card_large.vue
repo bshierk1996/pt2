@@ -3,7 +3,7 @@
   <b-card no-body class="overflow-hidden" >
     <b-row no-gutters>
       <b-col md="6">
-        <b-card>
+        <b-card class="no-border">
           <img src="../assets/bio.jpg" alt="" />
         </b-card>
       </b-col>
@@ -38,8 +38,7 @@ export default {
   max-width: 860px;
   font-family: 'Montserrat', sans-serif;
   color: #A2D618;
-  margin-left: 20px;
-  margin-right:20px;
+  margin: 0 auto;
   
 }
 
@@ -48,5 +47,7 @@ export default {
   color:black
 }
 
-
+.no-border {
+  border: none;
+}
 </style>
