@@ -3,9 +3,9 @@
   <b-card no-body class="overflow-hidden" >
     <b-row no-gutters>
       <b-col md="6">
-        <b-card- >
+        <b-card>
           <img src="../assets/bio.jpg" alt="">
-        </b-card->
+        </b-card>
       </b-col>
       <b-col md="6">
         <b-card-body class ="title1" title="MEET KEISHA VILLARSON">

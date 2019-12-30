@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
-    <NavBar />
+    <!-- <NavBar /> -->
     <Jumbo />
     <b-container>
     <Lcard />
@@ -9,12 +9,12 @@
     <mealcard />
     <timecard />
     <dailycard /> 
-      <card
+      <!-- <card
         v-for="item in cardInfo"
         :key="item.title"
         :title="item.title"
         :image="item.image"
-      />
+      /> -->
       </b-row>
           <router-view></router-view>
 

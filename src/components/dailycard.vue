@@ -9,9 +9,9 @@
     style="max-width: 20rem;"
     class="mb-2"
   >
-    <b-card-img-src >
-      <img src="../assets/img3.jpg" alt="">
-    </b-card-img-src>
+    <b-card-img src="../assets/img3.jpg">
+      <!-- <img src="../assets/img3.jpg" alt=""> -->
+    </b-card-img>
 
     <b-card-text>
       These workouts are programmed to aid you in your journey of losing weight and toning in the convenience of your own home or at the gym. Each workout is designed for you to build muscle, speed your metabolism, lose fat and keep it off! This subscription gives you access to full, upper, lower body workouts alongside cardio and restorative circuits.
