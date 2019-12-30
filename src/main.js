@@ -19,7 +19,7 @@ const router = new VueRouter({
     {path: '/mealplan', component:mealplan},
     {path:'/workouts',component:workouts},
     {path: '/realtime', component:realtime},
-    {path: 'signupForm', component:signup}
+    {path: '/signupForm', component:signup}
   ],
   mode:'history'
 })
