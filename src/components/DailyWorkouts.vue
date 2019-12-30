@@ -1,6 +1,6 @@
 <template>
     <div class="daily-workouts-container">
-        <h1 class="workout-title">{{ title }}</h1>
+    <h1 class="workout-title">{{ title }}</h1>
       <div 
         v-for="(circuit, index) in circuitsProp"
         :key="`circuit-${index}`"
@@ -45,6 +45,7 @@ body {
 }
 .daily-workouts-container {
     margin: 0 50px;
+    padding-top: 100px;
 }
 
 .daily-circuit {
