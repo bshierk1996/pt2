@@ -1,5 +1,6 @@
 <template>
    <div class="col-4">
+       
         <b-card
             :title=title
             img-src="src/assets/img1.jpg"
@@ -25,11 +26,7 @@ export default {
     props: [ 'title', 'image' ,'img','imgs'],
 
     data(){
-        return{
-            images:[
-                '../assets/img1.jpg','../assets/img2.jpg','../assets/img3.jpg'
-            ]
-        }
+
     }
 }
 </script>

@@ -6,7 +6,7 @@
       <div class="card" style="width: 18rem;">
         <img src="../assets/img1.jpg" class="card-img-top" alt="">
         <div class="card-body">
-          <p class="card-text">todays workout</p>
+          <p class="card-text"></p>
           <a href="#" class="btn btn-primary">Go somewhere</a>
         </div>
       </div>
