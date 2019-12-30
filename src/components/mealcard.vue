@@ -1,0 +1,41 @@
+<template>
+
+   <div>
+  <b-card
+  h-100
+    
+    img-alt="Image"
+    img-top
+    tag="article"
+    style="max-width: 20rem;"
+    class="mb-2"
+  >
+    <b-card-img-src >
+      <img src="../assets/img2.jpg" alt="">
+    </b-card-img-src>
+
+    <b-card-text>
+      Nutrition is the hardest part and I’ve created an easy to follow nutrition guide with different recipes tailored to your fitness goals. Whether you’re on a pescatarian, standard or plant based diet you’ll have access to delicious guilt free meals. You’ll also have insight on what foods to avoid.
+      <br>
+      <br>
+      <br>
+    </b-card-text>
+
+    <b-button href="#" variant="primary"><router-link to="/mealplan"> Go somewhe</router-link></b-button>
+  </b-card>
+</div>
+</template>
+
+
+
+<script>
+export default {
+    name: 'mealcard'
+}
+</script>
+
+
+
+<style>
+
+</style>
