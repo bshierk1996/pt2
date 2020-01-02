@@ -3,7 +3,6 @@
   <div>
 
   <b-card
-    
     img-alt="Image"
     img-top
     tag="article"
