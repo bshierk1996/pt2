@@ -2,8 +2,8 @@
 
   <div id="app">
     <HelloWorld />
+    <h1>Active user is {{ activeUser.name }}</h1>
     <router-view></router-view>
-    <!-- <signup /> -->
   </div>
 </template>
 
@@ -28,14 +28,22 @@ export default {
         messagingSenderId: "665776943970",
         appId: "1:665776943970:web:baa2597e8b5f2cc360f23b",
         measurementId: "G-MWYYGCRG0M"
-      }
+      },
+      project: null,
+      activeUser: {}
     }
   },
   methods: {
     initFirebase() {
       // Initialize Firebase
-      firebase.initializeApp(this.fbConfig);
+      this.project = firebase.initializeApp(this.fbConfig);
       firebase.analytics();
+
+      const ref = firebase.database().ref('users/brentman');
+      ref.once('value').then((snapshot) => {
+        this.activeUser.name = snapshot.child("name").val()
+        this.activeUser.email = snapshot.child("email").val()
+      })
     }
   }
 }
