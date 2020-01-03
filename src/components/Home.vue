@@ -1,6 +1,5 @@
 <template>
 <div>
- <HelloWorld msg="Welcome to Your Vue.js App"/>
     <!-- <NavBar /> -->
     <Jumbo />
     <b-container>
@@ -26,7 +25,6 @@
 </template>
 
 <script>
-import HelloWorld from './HelloWorld.vue'
 import Jumbo from './jumbotron'
 import Lcard from './card_large'
 import dailycard from './mealcard'
@@ -36,7 +34,6 @@ import community from './community'
 export default {
     name: 'Home',
     components: {
-    HelloWorld,
     Jumbo,
     Lcard,
     dailycard,

@@ -1,2 +1,8 @@
-{"parser": "babel-eslint"
+{
+    "root": true,
+    
+     "parserOptions": {
+         "parser": "babel-eslint"
+     }
+    
 }

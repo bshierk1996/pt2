@@ -8,7 +8,7 @@
         </div>
         <div class="col-md-4 mb-3">
           <label for="validationDefault02">Last name</label>
-          <input type="text" class="form-control lastname" id="validationDefault02" value="" required placeholder="lastnme"  v-model="input.lastname" /> 
+          <input type="text" class="form-control lastname" id="validationDefault02" value="" required placeholder="lastname"  v-model="input.lastname" /> 
         </div>
         <div class="col-md-4 mb-3">
           <label for="validationDefaultemail" placeholder="email address">email address</label>
@@ -22,15 +22,18 @@
       </div>
       <div class="form-row">
         <div class="col-md-6 mb-3">
+          <label for="validationDefault03">address</label>
+          <input type="text" class="form-control" id="validationDefault03" required v-model="input.address"/>
+        </div>
+      </div>
+        <div class="form-row">
+        <div class="col-md-3 mb-3">
           <label for="validationDefault03">City</label>
           <input type="text" class="form-control" id="validationDefault03" required v-model="input.city"/>
         </div>
         <div class="col-md-3 mb-3">
           <label for="validationDefault04">State</label>
-          <select class="custom-select" id="validationDefault04" required>
-            <option selected disabled value="">Choose...</option>
-            <option>...</option>
-          </select>
+          <input type="text" class="form-control"  required v-model="input.state"/>
         </div>
         <div class="col-md-3 mb-3">
           <label for="validationDefault05">Zip</label>
@@ -60,11 +63,13 @@
       <button class="btn btn-primary" type="submit" v-on:click="login()">Submit form</button>
     </form>
   </div>
+ 
 </template>
 
 
 <script>
-    export default {
+export default {
+ 
         name: 'signupData',
         data() {
             return {
@@ -95,8 +100,17 @@
             }
         }
     }
+
+
 </script>
 
+
+    
+
+<>
 <style>
+.container-fluid{
+  margin-top: 40px;
+}
 
 </style>
