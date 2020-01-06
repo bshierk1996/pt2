@@ -3,8 +3,11 @@
     <img src="../assets/KVF_logo.svg" alt="img" class="logo-img">
 
     <div class="d-flex justify-content-end pillz">
+      <button class=""><router-link to="/login"> Login</router-link></button>
+      <button class=""><router-link to="/signup"> Sign up</router-link></button>
       <button class="">Pricing</button> 
-      <button class=""><router-link to="/signupForm"> Join now</router-link></button>
+     
+
     </div>
   </div>
 </template>

@@ -4,13 +4,17 @@ import BootstrapVue from 'bootstrap-vue'
 import VueRouter from 'vue-router'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import firebase from 'firebase'
+import firebaseui from 'firebaseui'
 import mealplan from './components/mealPlanSection.vue'
 import workouts from './components/workouts'
 import realtime from './components/realTimeSection'
 import signup from './components/signupForm'
+import login from './components/login'
 import Home from './components/Home'
 import DailyWorkouts from './components/DailyWorkouts'
 import { todayProps, yesterdayProps } from './propsconfig'
+
 
 Vue.use(VueRouter);
 Vue.use(BootstrapVue);
@@ -33,7 +37,8 @@ const router = new VueRouter({
     {path: '/mealplan', component: mealplan},
     {path:'/workouts',component: workouts},
     {path: '/realtime', component: realtime},
-    {path: '/signupForm', component: signup}
+    {path: '/signupForm', component: signup},
+    {path: '/login', component: login}
   ],
   mode:'history'
 })
