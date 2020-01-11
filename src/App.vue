@@ -36,17 +36,21 @@ export default {
   methods: {
     initFirebase() {
       // Initialize Firebase
-      this.project = firebase.initializeApp(this.fbConfig);
       firebase.analytics();
-
-      const ref = firebase.database().ref('users/brentman');
-      ref.once('value').then((snapshot) => {
-        this.activeUser.name = snapshot.child("name").val()
-        this.activeUser.email = snapshot.child("email").val()
-      })
+  
+      //const ref = firebase.database().ref('users/brentman');
+      //ref.once('value').then((snapshot) => {
+        //this.activeUser.name = snapshot.child("name").val()
+        //this.activeUser.email = snapshot.child("email").val()
+      }
+    },
+    loginUserFB(){
+      const auth = firebase.auth()
+      auth.signInWithEmailAndPassword(email,password)
     }
+    
   }
-}
+
 </script>
 
 <style>

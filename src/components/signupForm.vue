@@ -4,51 +4,51 @@
       <div class="form-row">
         <div class="col-md-4 mb-3">
           <label for="validationDefault01">First name</label>
-          <input type="text" class="form-control firstname" id="validationDefault01" value="" required placeholder="firstname" v-model="input.firstname" />
+          <input type="text" class="form-control firstname"  value="" required placeholder="firstname" v-model="firstname" />
         </div>
         <div class="col-md-4 mb-3">
-          <label for="validationDefault02">Last name</label>
-          <input type="text" class="form-control lastname" id="validationDefault02" value="" required placeholder="lastname"  v-model="input.lastname" /> 
+          <label >Last name</label>
+          <input type="text" class="form-control lastname"  value="" required placeholder="lastname"  v-model="lastname" /> 
         </div>
         <div class="col-md-4 mb-3">
-          <label for="validationDefault01">Email Adrress</label>
-          <input type="text" class="form-control firstname" id="validationDefault01" value="" required placeholder="firstname" v-model="input.email" />
+          <label >Email Adrress</label>
+          <input type="text" class="form-control email"  value="" required placeholder="firstname" v-model="email" />
         </div>
         </div>
         <div class="col-md-4 mb-3">
-          <label for="validationDefault01">Password</label>
-          <input type="text" class="form-control firstname" id="validationDefault01" value="" required placeholder="firstname" v-model="input.password" />
+          <label >Password</label>
+          <input type="text" class="form-control password" value="" required placeholder="password" v-model="password" />
         </div>
         <div class="form-row">
         <div class="col-md-6 mb-3">
-          <label for="validationDefault03">address</label>
-          <input type="text" class="form-control" id="validationDefault03" required v-model="input.address"/>
+          <label >address</label>
+          <input type="text" class="form-control"  required v-model="address"/>
         </div>
         </div>
         <div class="form-row">
         <div class="col-md-3 mb-3">
-          <label for="validationDefault03">City</label>
-          <input type="text" class="form-control" id="validationDefault03" required v-model="input.city"/>
+          <label >City</label>
+          <input type="text" class="form-control"  required v-model="city"/>
         </div>
         <div class="col-md-3 mb-3">
-          <label for="validationDefault04">State</label>
-          <input type="text" class="form-control"  required v-model="input.state"/>
+          <label >State</label>
+          <input type="text" class="form-control"  required v-model="state"/>
         </div>
         <div class="col-md-3 mb-3">
-          <label for="validationDefault05">Zip</label>
-          <input type="text" class="form-control" id="validationDefault05" required v-model="input.zip"/>
+          <label >Zip</label>
+          <input type="text" class="form-control" required v-model="zip"/>
         </div>
         <div class="col-md-3 mb-3">
-          <label for="validationDefault05">credit card</label>
-          <input type="text" class="form-control" id="validationDefault05" required v-model="input.credit"/>
+          <label >credit card</label>
+          <input type="text" class="form-control" required v-model="credit"/>
         </div>
         <div class="col-md-3 mb-3">
-          <label for="validationDefault05">cvc</label>
-          <input type="text" class="form-control" id="validationDefault05" required v-model="input.cvc"/>
+          <label >cvc</label>
+          <input type="text" class="form-control"  required v-model="cvc"/>
         </div>
         <div class="col-md-3 mb-3">
-          <label for="validationDefault05">expiration date</label>
-          <input type="text" class="form-control" id="validationDefault05" required v-model="input.expiration"/>
+          <label >expiration date</label>
+          <input type="text" class="form-control" required v-model="expiration"/>
         </div>
         </div>
         <div class="form-group">
@@ -67,12 +67,14 @@
 
 
 <script>
+import  firebase from 'firebase';
+
 export default {
  
         name: 'signupData',
         data() {
             return {
-                input: {
+                
                    firstname: '',
                     lastname: '',
                     city: '',
@@ -82,25 +84,21 @@ export default {
                     cvc: '',
                     expiration: '',
                     password: '',
-                }
-                
-            }
+                    email:'',
+                    address:'',
+                };
         },
         methods: {
-            submitUser() {
-                if(this.input.username != "" && this.input.password != "") {
-                    if(this.input.username == this.$parent.mockAccount.username && this.input.password == this.$parent.mockAccount.password) {
-                        this.$emit("authenticated", true);
-                        // Send to stripe
-                        this.submitData('charge', this.input, 'POST');
-                        this.$router.replace({ name: "secure" });
-                    } else {
-                        // console.log("The username and / or password is incorrect");
-                    }
-                } else {
-                    // console.log("A username and password must be present");
+            submitUser:function(e) {
+              firebase.auth().
+              createUserWithEmailAndPassword(this.email, this.password).then(
+                users => {
+                  alert(`account created`);
+                  
                 }
-            },
+              )
+
+                        },
             submitToStripe(endpoint, body, method) {
               fetch(`localhost:8000/${endpoint}`, {
                 body: body,
@@ -120,6 +118,8 @@ export default {
             
         }
     }
+
+    
 
 </script>
 
