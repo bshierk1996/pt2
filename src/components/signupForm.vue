@@ -96,27 +96,27 @@ export default {
                   alert(`account created`);
                   
                 }
-              )
+              );
 
                         },
-            submitToStripe(endpoint, body, method) {
-              fetch(`localhost:8000/${endpoint}`, {
-                body: body,
-                method: method,
-                  headers: {
-                    'Content-Type': 'application/json',
-                  },
-              })
-              .then(data => data.json())
-              .then(json => console.log(json))
-              .catch(err => {
-                console.log(`Error sending to stripe:`)
-                console.log(err)
-              })
+           // submitToStripe(endpoint, body, method) {
+             // fetch(`localhost:8000/${endpoint}`, {
+              //  body: body,
+               // method: method,
+                 // headers: {
+                   // 'Content-Type': 'application/json',
+                 // },
+              //})
+              //.then(data => data.json())
+              //.then(json => console.log(json))
+              //.catch(err => {
+                //console.log(`Error sending to stripe:`)
+               // console.log(err)
+              
 
-            }
+           
             
-        }
+       }
     }
 
     
