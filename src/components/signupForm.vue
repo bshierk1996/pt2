@@ -96,6 +96,7 @@ export default {
                 // Login has been created
                 returnedLogin => {
                   // Get the returned login data
+                  console.log('Successfully created login')
                   const userData = returnedLogin.user;
 
                   // Create entry in the database from the login info
@@ -105,7 +106,10 @@ export default {
                     name: `${this.firstname} ${this.lastname}` // name (from form data)
                   })
                 }
-              );
+              )
+              .catch((error) => {
+                alert(`Could not sign up: ${error.message}`);
+              })
 
           },
            // submitToStripe(endpoint, body, method) {
