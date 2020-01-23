@@ -40,6 +40,8 @@ export default {
                     
                     promise.catch(e => console.log(e.message));
                     alert(`${this.email} logged in`)
+                    
+                
                 
             },
             userState(){

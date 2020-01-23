@@ -1,6 +1,6 @@
 <template>
     <div class="container-fluid">
-      <form>
+      <form action="/charge" method="POST">
       <div class="form-row">
         <div class="col-md-4 mb-3">
           <label for="validationDefault01">First name</label>
@@ -97,6 +97,7 @@ export default {
                 returnedLogin => {
                   // Get the returned login data
                   console.log('Successfully created login')
+                  alert(`created user for ${this.email} and ${this.password}`)
                   const userData = returnedLogin.user;
 
                   // Create entry in the database from the login info
@@ -109,9 +110,11 @@ export default {
               )
               .catch((error) => {
                 alert(`Could not sign up: ${error.message}`);
+                
               })
 
           },
+          
            // submitToStripe(endpoint, body, method) {
              // fetch(`localhost:8000/${endpoint}`, {
               //  body: body,

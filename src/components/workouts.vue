@@ -3,18 +3,18 @@
 <b-container class="workout-overlay">
   <b-jumbotron header="welcome to the daily workouts section ">
     <div class="row">
-      <div class="card" style="width: 18rem;">
-        <img src="../assets/img1.jpg" class="card-img-top" alt="">
+      <div class="card md-6" style="width: 18rem;">
+        <h1>TODAYS WORKOUT</h1>
         <div class="card-body">
           <p class="card-text"></p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+          <a href="#" class="btn btn-primary"><router-link to="/todays-workout">Go somewhere</router-link></a>
         </div>
       </div>
       <div class="card" style="width: 18rem;">
-        <img src="../assets/img2.jpg" class="card-img-top" alt="...">
+        <h1>YESTERDAYS WORKOUT</h1>
         <div class="card-body">
-          <p class="card-text">yesterdays workout</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+          <p class="card-text"></p>
+          <a href="#" class="btn btn-primary"><router-link to="/yesterdays-workout">Go somewhere</router-link ></a>
         </div>
       </div>
     </div>
@@ -26,12 +26,18 @@
 </template>
 
 <script>
+
 export default{
     name: "workouts"
 }
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css?family=Montserrat:900i&display=swap');
+div{
+  font-family: 'Montserrat', sans-serif;
+
+}
 .today{
   margin-right: 20px;
 }
@@ -58,6 +64,16 @@ export default{
 .card-body{
 background: #A2D618;
 color: aliceblue;
-}
 
+}
+.card{
+  background: #A2D618;
+  margin-bottom: 20px;
+  color: ivory;
+  margin-left: 0px;
+}
+h1{
+
+  
+}
 </style>

@@ -15,6 +15,9 @@ import Home from './components/Home'
 import DailyWorkouts from './components/DailyWorkouts'
 import { todayProps, yesterdayProps } from './propsconfig'
 import viewUsers from './components/viewUsers'
+import pricingView from './components/pricingView'
+import content from './components/content'
+import mobile from './components/mobileNav'
 
 Vue.use(VueRouter);
 Vue.use(BootstrapVue);
@@ -39,7 +42,11 @@ const router = new VueRouter({
     {path: '/realtime', component: realtime},
     {path: '/signupForm', component: signup},
     {path: '/login', component: login},
-    {path: '/viewUsers', component: viewUsers}
+    {path: '/viewUsers', component: viewUsers},
+    {path: '/pricing', component: pricingView},
+    {path: '/content', component: content},
+    {path: '/nav', component: mobile}
+   
   ],
   mode:'history'
 })

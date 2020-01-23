@@ -2,17 +2,22 @@
 
   <div id="app">
     <HelloWorld />
-    <h1>Active user is {{ activeUser.name }}</h1>
+    <mobileNav />
+    <!-- <h1>Active user is {{ activeUser.name }}</h1> -->
     <router-view></router-view>
   </div>
 </template>
 
+<script src="https://js.stripe.com/v3/"></script>
+
 <script>
 import HelloWorld from './components/HelloWorld.vue'
 import * as firebase from 'firebase';
+import mobile from './components/mobileNav'
 
 export default {
   name: 'app',
+  components: { mobile },
   components: { HelloWorld },
   mounted() {
     this.initFirebase();
@@ -42,14 +47,13 @@ export default {
       //ref.once('value').then((snapshot) => {
         //this.activeUser.name = snapshot.child("name").val()
         //this.activeUser.email = snapshot.child("email").val()
+      },
+      loginUserFB(){
+        const auth = firebase.auth()
+        auth.signInWithEmailAndPassword(email,password)
       }
     },
-    loginUserFB(){
-      const auth = firebase.auth()
-      auth.signInWithEmailAndPassword(email,password)
-    }
-    
-  }
+}
 
 </script>
 
@@ -63,5 +67,17 @@ export default {
 body{
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.4
+}
+
+@media screen and (max-width: 800px) {
+  .nav-row {
+    display: '/components/mobileNav' ;
+  }
+}
+  @media screen and (max-width: 799px) {
+  .mobile-nav-row {
+    display: contents;
+  }
+
 }
 </style>

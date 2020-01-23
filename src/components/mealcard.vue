@@ -21,7 +21,7 @@
       <br>
     </b-card-text>
 
-    <b-button href="#" variant="primary"><router-link to="/mealplan"> Go somewhe</router-link></b-button>
+    <b-button class="go-btn" href="#" ><router-link to="/mealplan"> Go somewhe</router-link></b-button>
   </b-card>
 </div>
 </template>
@@ -37,5 +37,14 @@ export default {
 
 
 <style>
+.go-btn{
+  background: #A2D618;
+  color: ivory;
+border: #A2D618;
+
+}
+a{
+  color: ivory;
+}
 
 </style>
