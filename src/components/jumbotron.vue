@@ -2,7 +2,7 @@
     <div>
   <b-jumbotron  class="jumbo">
     <h1 class="header-text">SUMMER BODIES ARE MADE IN THE WINTER!!</h1>
-    <p class="p-text">Reach your fitness goals with a result-driven weight loss and toning program!</p>
+    <p class="p-text">    REACH YOUR FITNESS GOALS WITH A RESULT-DRIVEN WEIGHT LOSS AND TONING PROGRAM</p>
     <b-button  href="#" class="join-button"><router-link to="/signupForm">JOIN NOW</router-link></b-button>
   </b-jumbotron>
 </div>
@@ -29,6 +29,7 @@ export default {
     background-position-x: -45vh;
     background-position-y: -10vh;
     border-radius: 0;
+    background-repeat: no-repeat;
 }
 
 .header-text{
@@ -38,20 +39,16 @@ export default {
     margin-left:35vh;
     margin-right:70vh; 
 }
+
+
 .p-text{
-  font-size: 70px;
-    margin-top: 0vh;
-    margin-bottom: 0vh;
-    margin-left:0vh;
-    margin-right:0vh; 
-}
-.lead{
     font-size: 20px;
     margin-top: 3vh;
     margin-left: 35vh;
     margin-right: 81vh;
     font-family: sans-serif;
     font-weight: 300;
+    font-family: 'Montserrat', sans-serif;
 
 
 }
@@ -89,12 +86,12 @@ export default {
     color:ivory;
   }
   .p-text{
-    font-size: 20px;
+    font-size: 17px;
     margin-top: 40px;
     margin-bottom:0px;
     margin-left: 0px;
     margin-right: 0px; 
-    font-family:Arial, Helvetica, sans-serif;
+    font-family: 'Montserrat', sans-serif;
   
     font-weight: normal
 

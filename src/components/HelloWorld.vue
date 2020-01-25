@@ -65,9 +65,6 @@ li {
   margin: 0 10px;
 }
 
-a {
-  color: ivory;
-}
 
 .mobile-nav-row {
   z-index: 999;
@@ -75,6 +72,7 @@ a {
   width: 100%;
   background: #f5f5f5;
   box-shadow: 0px 5px 5px 0 rgba(0, 0, 0, 0.2);
+  max-height: 75px;
   
 }
 
@@ -95,22 +93,7 @@ a {
   padding: 15px;
 }
 
-.pillz {
-  margin-left: auto;
-}
 
-.pillz button {
-  margin: 15px;
-  
-  color: ivory;
-  padding: 0 20px;
-  transition: opacity 200ms ease;
-  width: 125px;
-}
-
-.pillz button:hover {
-  opacity: 0.7;
-}
 .butts{
   margin-left: 20px;
   background-color: #f5f5f5;
@@ -119,10 +102,11 @@ a {
 }
 a{
   color: #A2D618;
-  background-color: white;
-  border-color: white;
+  background-color: #f5f5f5;
+  border-color:#f5f5f5;
 
 }
+
 
 
 </style>
