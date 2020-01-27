@@ -46,6 +46,7 @@ const router = new VueRouter({
     {path: '/pricing', component: pricingView},
     {path: '/content', component: content},
     {path: '/nav', component: mobile}
+    
    
   ],
   mode:'history'
