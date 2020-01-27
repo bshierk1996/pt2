@@ -1,7 +1,8 @@
 <template>
-    <div class="container-fluid">
+    <div class="container-fluid SignupForm">
       <form action="/charge" method="POST">
-      <div class="form-row">
+      
+      <div class="form-row Fname">
         <div class="col-md-4 mb-3">
           <label for="validationDefault01">First name</label>
           <input type="text" class="form-control firstname"  value="" required placeholder="firstname" v-model="firstname" />
@@ -10,44 +11,45 @@
           <label >Last name</label>
           <input type="text" class="form-control lastname"  value="" required placeholder="lastname"  v-model="lastname" /> 
         </div>
+        
         <div class="col-md-4 mb-3">
-          <label >Email Adrress</label>
-          <input type="text" class="form-control email"  value="" required placeholder="firstname" v-model="email" />
+          <label >Email Address</label>
+          <input type="text" class="form-control email"  value="" required placeholder="Email Address" v-model="email" />
         </div>
         </div>
         <div class="col-md-4 mb-3">
           <label >Password</label>
           <input type="text" class="form-control password" value="" required placeholder="password" v-model="password" />
         </div>
-        <div class="form-row">
-        <div class="col-md-6 mb-3">
+        <div class="">
+        <div class="col-md-4 mb-3">
           <label >address</label>
           <input type="text" class="form-control"  required v-model="address"/>
         </div>
         </div>
-        <div class="form-row">
-        <div class="col-md-3 mb-3">
+        <div >
+        <div class="col-md-4 mb-3">
           <label >City</label>
           <input type="text" class="form-control"  required v-model="city"/>
         </div>
-        <div class="col-md-3 mb-3">
+        <div class="col-md-4 mb-3">
           <label >State</label>
           <input type="text" class="form-control"  required v-model="state"/>
         </div>
-        <div class="col-md-3 mb-3">
+        <div class="col-md-1 mb-3">
           <label >Zip</label>
           <input type="text" class="form-control" required v-model="zip"/>
         </div>
         <div class="col-md-3 mb-3">
-          <label >credit card</label>
+          <label >Card number</label>
           <input type="text" class="form-control" required v-model="credit"/>
         </div>
-        <div class="col-md-3 mb-3">
-          <label >cvc</label>
+        <div class="col-md-2 mb-3">
+          <label >expiration date</label>
           <input type="text" class="form-control"  required v-model="cvc"/>
         </div>
-        <div class="col-md-3 mb-3">
-          <label >expiration date</label>
+        <div class="col-md-1 mb-3">
+          <label >CVC</label>
           <input type="text" class="form-control" required v-model="expiration"/>
         </div>
         </div>
@@ -145,7 +147,14 @@ export default {
 <>
 <style>
 .container-fluid{
-  margin-top: 40px;
+  margin-right:100%;
+}
+.Fname{
+  padding-top: 6%;
+}
+form{
+  
+
 }
 
 </style>

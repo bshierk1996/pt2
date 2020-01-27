@@ -67,13 +67,13 @@ li {
 
 
 .mobile-nav-row {
-  z-index: 999;
+  z-index: 200;
   position: fixed;
   width: 100%;
   background: #f5f5f5;
   box-shadow: 0px 5px 5px 0 rgba(0, 0, 0, 0.2);
   max-height: 75px;
-  
+  /* margin-top: -50px; */
 }
 
 .pillz{

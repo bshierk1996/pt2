@@ -59,7 +59,7 @@ a{
 
 
 
-
+/* mobile--iphones 6,7,8,10 */
 @media screen and (max-width: 812px) {
  div {
     color: ivory;
@@ -94,5 +94,31 @@ h1{
   margin-left:140px;
   font-size: 14px;
 }
+/* mobile--iphone 5 */
+}
+@media screen and (max-width:569px) {
+  div{
+    background-image: url('../assets/community-iphone5.jpg');
+    background-position-y: 0;
+    background-position-x: -77px
+  }
+  p{
+    margin-left:121px;
+    margin-right: -8px;
+    font-size: 14px;
+  }
+  h1{
+    
+  margin-top:13%;
+  position: center;
+  margin-left: 34%;
+  font-size: 30px;
+}
+.button{
+  margin-left:121px;
+  font-size: 9px;
+  margin-right: 0px;
+}
+  
 }
 </style>
