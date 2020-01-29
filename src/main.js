@@ -18,7 +18,7 @@ import viewUsers from './components/viewUsers'
 import pricingView from './components/pricingView'
 import content from './components/content'
 import mobile from './components/mobileNav'
-
+import dashBoard from './components/dashboard'
 Vue.use(VueRouter);
 Vue.use(BootstrapVue);
 
@@ -45,8 +45,9 @@ const router = new VueRouter({
     {path: '/viewUsers', component: viewUsers},
     {path: '/pricing', component: pricingView},
     {path: '/content', component: content},
-    {path: '/nav', component: mobile}
-    
+    {path: '/nav', component: mobile},
+    {path: './dashboard', component: dashBoard}
+
    
   ],
   mode:'history'

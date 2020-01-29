@@ -4,7 +4,7 @@
       <div class="form-row">
         <div class="col-md-4 mb-3">
           <label for="validationDefault01">email</label>
-          <input type="text" class="form-control firstname" id="validationDefault01" value="" required placeholder="Email" v-model="email" />
+          <input type="text" class="form-control email" id="validationDefault01" value="" required placeholder="Email" v-model="email" />
         </div>
         </div>
         <div class="col-md-4 mb-3">
@@ -67,6 +67,9 @@ export default {
 <style>
 .container-fluid{
   margin-top: 40px;
+}
+form{
+  padding-top: 6%;
 }
 
 </style>
