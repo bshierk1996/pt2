@@ -52,8 +52,22 @@ const router = new VueRouter({
 
    
   ],
-  mode:'history'
-})
+  mode:'history',
+
+  state:{
+    authenticated: false
+  },
+  mutations:{
+    setAuthentication(state,status){
+      state.authenticated = status;
+    }
+  }
+  
+},
+
+
+)
+
 
 new Vue({
   router,

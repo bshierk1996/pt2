@@ -52,6 +52,12 @@ export default {
                   console.log('an error has occured ')
                 }
               })
+            },
+            adminAuth(){
+              if (this.email == 'admin@gmail.com' && this.password =='admin') {
+                auth.signInWithEmailAndPassword(this.email,this.password)
+                alert('admin user sigin')
+              }
             }
             
             
