@@ -72,10 +72,11 @@ const router = new VueRouter({
    state:{
      authenticated: false
    },
+   mutations:{
      setAuthentication(state,status){
        state.authenticated = status;
      }
-   
+    }
  })
 
 new Vue({

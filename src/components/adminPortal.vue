@@ -10,7 +10,7 @@
         <b-form-file
             class='upload'
             v-model="file"
-            multiple=[]
+            multiple=true
             :state="Boolean(file)"
           placeholder="Choose a file or drop it here..."
           drop-placeholder="Drop file here..."
@@ -58,7 +58,7 @@
       }
     },
     methods:{
-      compleate: function(event){
+      compleate: function(){
         alert(
           'workouts updated'
         )

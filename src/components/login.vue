@@ -11,7 +11,7 @@
           <label for="validationDefault02">Password</label>
           <input type="text" class="form-control lastname" id="validationDefault02" value="" required placeholder="Password"  v-model="password" /> 
         </div>
-          <button class="btn btn-primary" type="submit" v-on:click="admin()">Submit form</button>
+          <button class="btn btn-primary" type="submit" v-on:click="adminAuth()">Submit form</button>
     </form>
   </div>
  
@@ -57,7 +57,7 @@ export default {
             adminAuth(){
               if (this.email == 'admin@gmail.com' && this.password =='admin') {
                 this.$store.commit("setAuthentication", true);
-                this.$router.replace({name:"admin"})
+                this.$router.replace({path:"/admin"})
                 alert(`admin logged in`)
               }else{
                 console.log('admin has logged failed')
