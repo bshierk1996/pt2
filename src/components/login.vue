@@ -1,18 +1,18 @@
 <template>
     <div class="container-fluid">
       <form>
-      <div class="form-row">
-        <div class="col-md-4 mb-3">
-          <label for="validationDefault01">email</label>
-          <input type="text" class="form-control email" id="validationDefault01" value="" required placeholder="Email" v-model="email" />
+        <div class="form-row">
+          <div class="col-md-4 mb-3">
+            <label for="validationDefault01">email</label>
+            <input type="text" class="form-control email" id="validationDefault01" value="" required placeholder="Email" v-model="email" />
         </div>
-        </div>
+          </div>
         <div class="col-md-4 mb-3">
           <label for="validationDefault02">Password</label>
           <input type="text" class="form-control lastname" id="validationDefault02" value="" required placeholder="Password"  v-model="password" /> 
         </div>
           <button class="btn btn-primary" type="submit" v-on:click="adminAuth()">Submit form</button>
-    </form>
+      </form>
   </div>
  
 </template>
