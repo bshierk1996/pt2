@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
+import Vuex from 'vuex'
 import BootstrapVue from 'bootstrap-vue'
 import VueRouter from 'vue-router'
 import 'bootstrap/dist/css/bootstrap.css'
@@ -20,9 +21,11 @@ import content from './components/content'
 import mobile from './components/mobileNav'
 import dashBoard from './components/dashboard'
 import admin from './components/adminPortal'
+import 'es6-promise/auto'
+
 Vue.use(VueRouter);
 Vue.use(BootstrapVue);
-
+Vue.use(Vuex);
 Vue.config.productionTip = false
 
 const router = new VueRouter({
@@ -48,28 +51,36 @@ const router = new VueRouter({
     {path: '/content', component: content},
     {path: '/nav', component: mobile},
     {path: '/dashboard', component: dashBoard},
-    {path: '/admin', component: admin}
+    {path: '/admin',name:'admin', component: admin, beforeEnter: (to,from,next) =>{
+      if(store.state.authenticated == false){
+        next(false);
+      }else{
+        next()
+      }
+    }},
 
    
   ],
   mode:'history',
 
-  state:{
-    authenticated: false
-  },
-  mutations:{
-    setAuthentication(state,status){
-      state.authenticated = status;
-    }
-  }
+ 
   
 },
 
-
 )
-
+ const store = new Vuex.Store({
+   state:{
+     authenticated: false
+   },
+     setAuthentication(state,status){
+       state.authenticated = status;
+     }
+   
+ })
 
 new Vue({
   router,
   render: h => h(App),
+   store:store,
+   router:router
 }).$mount('#app')

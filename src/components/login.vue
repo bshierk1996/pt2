@@ -11,7 +11,7 @@
           <label for="validationDefault02">Password</label>
           <input type="text" class="form-control lastname" id="validationDefault02" value="" required placeholder="Password"  v-model="password" /> 
         </div>
-          <button class="btn btn-primary" type="submit" v-on:click="login()">Submit form</button>
+          <button class="btn btn-primary" type="submit" v-on:click="admin()">Submit form</button>
     </form>
   </div>
  
@@ -39,7 +39,8 @@ export default {
                     auth.signInWithEmailAndPassword(this.email, this.password);
                     
                     promise.catch(e => console.log(e.message));
-                    alert(`${this.email} logged in`)
+                    
+                    
                     
                 
                 
@@ -55,8 +56,11 @@ export default {
             },
             adminAuth(){
               if (this.email == 'admin@gmail.com' && this.password =='admin') {
-                auth.signInWithEmailAndPassword(this.email,this.password)
-                alert('admin user sigin')
+                this.$store.commit("setAuthentication", true);
+                this.$router.replace({name:"admin"})
+                alert(`admin logged in`)
+              }else{
+                console.log('admin has logged failed')
               }
             }
             
