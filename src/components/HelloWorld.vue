@@ -17,7 +17,7 @@
           <b-button squared href="#"><router-link to="/login"> LOGIN</router-link></b-button>
           <b-button squared href="#"><router-link to="/signupForm"> SIGNUP</router-link></b-button>
           <b-button squared href="#"><router-link to="/pricing"> PRICING</router-link></b-button>
-          <b-button squared href="#"><router-link to="/login"> YOUTUBE</router-link></b-button>
+          <b-button squared href="#"><router-link to="/content"> WORKOUTS</router-link></b-button>
         
 
         

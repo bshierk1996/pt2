@@ -27,8 +27,6 @@ export default {
                 
                    email: '',                    
                     password: ''
-                
-                
             }
         },
         methods: {
@@ -38,12 +36,7 @@ export default {
                     //const promise = auth.createUserWithEmailAndPassword(this.email,this.password)
                     auth.signInWithEmailAndPassword(this.email, this.password);
                     
-                    promise.catch(e => console.log(e.message));
-                    
-                    
-                    
-                
-                
+                    promise.catch(e => console.log(e.message))
             },
             userState(){
               firebase.auth().onAuthStateChanged(firebaseUser =>{
@@ -55,13 +48,13 @@ export default {
               })
             },
             adminAuth(){
-              if (this.email == 'admin@gmail.com' && this.password =='admin') {
-                this.$store.commit("setAuthentication", true);
-                this.$router.replace({path:"/admin"})
-                alert(`admin logged in`)
-              }else{
-                console.log('admin has logged failed')
-              }
+              // if (this.email == 'admin@gmail.com' && this.password =='admin') {
+              //   this.$store.commit("setAuthentication", true);
+              //   this.$router.replace({path:"/admin"})
+              //   alert(`admin logged in`)
+              // }else{
+              //   console.log('admin has logged failed')
+              // }
             }
             
             

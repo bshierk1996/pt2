@@ -44,6 +44,10 @@
           <label >Card number</label>
           <input type="text" class="form-control" required v-model="credit"/>
         </div>
+        <div class="col-md-3 mb-3">
+          <label > ReEnter Card number</label>
+          <input type="text" class="form-control" required v-model="credit"/>
+        </div>
         <div class="col-md-2 mb-3">
           <label >expiration date</label>
           <input type="text" class="form-control"  required v-model="cvc"/>

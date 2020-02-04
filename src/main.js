@@ -51,13 +51,13 @@ const router = new VueRouter({
     {path: '/content', component: content},
     {path: '/nav', component: mobile},
     {path: '/dashboard', component: dashBoard},
-    {path: '/admin',name:'admin', component: admin, beforeEnter: (to,from,next) =>{
-      if(store.state.authenticated == false){
-        next(false);
-      }else{
-        next()
-      }
-    }},
+    {path: '/admin',name:'admin', component: admin },//beforeEnter: (to,from,next) =>{
+    //   if(store.state.authenticated == false){
+    //     next(false);
+    //   }else{
+    //     next()
+    //   }
+    //}},
 
    
   ],
