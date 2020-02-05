@@ -7,9 +7,9 @@ const Busboy = require('busboy');
 const fs = require('fs');
 const cors = require("cors")({ origin: true });
 const keyFilename="keisha-fitness-firebase-adminsdk-fwmia-45ae69a6fa.json"
-const projectId = 'keisha-fitness.appspot.com';
+const projectId = 'gs://keisha-fitness.appspot.com';
 
-const storage = new Storage ({
+const gcs = new Storage ({
     projectId,
     keyFilename
   });
@@ -17,12 +17,8 @@ const storage = new Storage ({
 
 exports.onFileChange = functions.storage.object().onFinalize(event => {
   console.log(event);
-  
-
-//   const bucket = storage.bucket;
-    const bucket = admin.storage().bucket()
-
-  const contentType = object.contentType;
+  const bucket = storage.bucket;
+  const contentType = event.contentType;
   const filePath = event.name;
   console.log('file detected')
 
@@ -48,11 +44,11 @@ if(path.basename(filePath).startsWith('renamed-')){
 },
 exports.uploadFile = functions.https.onRequest((req, res) => {
        cors(req, res, () => {
-        //  if (req.method == "POST") {
-        //    return res.status(200).json({
-        //      message: "dsjalhllowed"
-        //    });
-        //  }
+         if (req.method !== "POST") {
+           return res.status(500).json({
+             message: "Not allowed"
+           });
+         }
          const busboy = new Busboy({ headers: req.headers });
          let uploadData = null;
     
@@ -63,13 +59,13 @@ exports.uploadFile = functions.https.onRequest((req, res) => {
          });
     
          busboy.on("finish", () => {
-           const bucket = storage.bucket("//keisha-fitness.appspot.com");
+           const bucket = storage.bucket("gs://keisha-fitness.appspot.com");
            bucket
              .upload(uploadData.file, {
                uploadType: "media",
                metadata: {
                  metadata: {
-                   contentTpe: uploadData.type
+                   contentType: uploadData.type
                  }
                }
              })
@@ -85,7 +81,7 @@ exports.uploadFile = functions.https.onRequest((req, res) => {
              });
          });
          busboy.end(req.rawBody);
-        // const bucket = storage.bucket('keisha-fitness.appspot.com')
+         const bucket = storage.bucket('gs://keisha-fitness.appspot.com')
 
 
        });
