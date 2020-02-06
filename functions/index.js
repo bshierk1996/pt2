@@ -9,7 +9,7 @@ const cors = require("cors")({ origin: true });
 const keyFilename="keisha-fitness-firebase-adminsdk-fwmia-45ae69a6fa.json"
 const projectId = 'gs://keisha-fitness.appspot.com';
 
-const gcs = new Storage ({
+const storage = new Storage ({
     projectId,
     keyFilename
   });
@@ -44,10 +44,10 @@ if(path.basename(filePath).startsWith('renamed-')){
 },
 exports.uploadFile = functions.https.onRequest((req, res) => {
        cors(req, res, () => {
-         if (req.method !== "POST") {
+         if (req.method == "POST") {
            return res.status(500).json({
              message: "Not allowed"
-           });
+           })
          }
          const busboy = new Busboy({ headers: req.headers });
          let uploadData = null;
@@ -80,8 +80,8 @@ exports.uploadFile = functions.https.onRequest((req, res) => {
                });
              });
          });
-         busboy.end(req.rawBody);
-         const bucket = storage.bucket('gs://keisha-fitness.appspot.com')
+         busboy.end();
+         //const bucket = storage.bucket('gs://keisha-fitness.appspot.com')
 
 
        });
