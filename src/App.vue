@@ -2,7 +2,7 @@
 
   <div id="app">
     <HelloWorld />
-    <mobileNav />
+    
     <!-- <h1>Active user is {{ activeUser.name }}</h1> -->
     <router-view></router-view>
   </div>
@@ -12,17 +12,17 @@
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
-import * as firebase from 'firebase';
-import mobile from './components/mobileNav'
-
+import firebase from 'firebase'
 export default {
   name: 'app',
-  components: { mobile },
+  
   components: { HelloWorld },
   mounted() {
     this.initFirebase();
   },
   data() {
+
+    //  firebase config 
     return {
       fbConfig: {
         apiKey: "AIzaSyAmtuksKKkhZlWGl57BbAwjNgViH2p0xfA",

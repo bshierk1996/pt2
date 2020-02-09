@@ -1,6 +1,8 @@
 <template>
     <div class="daily-workouts-container">
     <h1 class="workout-title">{{ title }}</h1>
+            <img v-if="receivedImgs !==null " :src="receivedImgs[0]" alt=""  />
+
       <div 
         v-for="(circuit, index) in circuitsProp"
         :key="`circuit-${index}`"
@@ -29,13 +31,40 @@
             </b-row>
         </b-card>
       </div>
+        <img v-if="receivedImgs !== ''" :src="receivedImgs" alt=""  />
     </div>
 </template>
 
 <script>
+import firebase, { storage } from 'firebase';
+
 export default {
     props: ['circuitsProp', 'title'],
     name: 'DailyWorkouts',
+    data() {
+        return {
+            receivedImgs: []
+        }
+    },
+    mounted() {
+        // call function here
+        this.getImgFromFirebase()
+    },
+    methods: {
+        getImgFromFirebase() {
+        
+        var imageRef = firebase.storage().ref("KVF_images").root()
+            imageRef.get()
+            .then((urls) => {
+            this.receivedImgs = urls
+            console.log('it worked! url: ')
+            console.log(urls)
+            }).catch((error) => {
+            console.log(error)
+
+            })
+        }
+    }
 }
 </script>
 

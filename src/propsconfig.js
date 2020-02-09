@@ -1,12 +1,15 @@
 export const todayProps = {
     title: 'Today\'s Workout',
+    props:[],
     circuitsProp: [
+        
         {
             name: 'Circuit 1',
             desc: 'For this circuit, perform each exercise in order for the indicated seconds. Allow rest time in between each exercise as indicated (15-20 sec). Repeat the series of exercises until you’ve finished the indicated sets (3). Allow 60-90 seconds between each circuit for this workout day.',
             workouts: [
                 {
-                    img: 'https://chaneldelisser.com/wp-content/uploads/2019/01/167-1.gif',
+                    img:'https://chaneldelisser.com/wp-content/uploads/2019/05/058.gif'
+                    ,
                     workoutName: 'Sprints - Treadmill',
                     sets: '3',
                     seconds: '45',

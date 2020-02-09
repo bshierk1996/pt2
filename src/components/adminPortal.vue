@@ -10,11 +10,12 @@
     <div class="upload-image mt-3">Selected: <strong>{{ selected }}</strong></div>
         <p class=''>select 3 files for each workout </p>
         <b-form-file
-            input type="file"
             @change="onFileSelected"
+            input 
+            v-bind:multiple="true"
+            type="file"
             class='upload'
             v-model="file"
-            multiple=true
             :state="Boolean(file)"
           placeholder="Choose a file or drop it here..."
           drop-placeholder="Drop file here..."
@@ -45,11 +46,14 @@
     <pre class="mt-3 mb-0">{{  }}</pre>
 
   
-    <b-button class="submit" v-on:click="complete">upload image</b-button>
+    <b-button class="submit" v-on:click="showfile">upload image</b-button>
+    
   </div>
 </template>
 
 <script>
+import firebase, { storage } from 'firebase';
+//import fbConfig from './App.vue';
   export default {
     name: 'admin',
     data() {
@@ -58,24 +62,48 @@
         file2: null,
         // position: null,
         selected: null,
+        text: 'hi',
+        imgToShow: ''
         
       }
     },
     methods:{
-      complete: function(){
-        alert(
-          'workouts updated'
-        )
+      onFileSelected(e){
         
-      },
-      // updateWorkout: function(){
-      //   this.$emit()
-      // },
-      onFileSelected: function(event){
+       this.file = e.target.files[0];
+         
+        var storageRef = firebase.storage().ref().child()
+
+        storageRef.put(this.file)
+      console.log(e.target.files[0])
+      
 
       },
-    }
-  }
+      showfile(e){
+        // let image = e.target.files[0]
+        console.log(this.file)
+        console.log(this.file[0].name)
+        var imageRef = firebase.storage().ref(`KVF_images${this.file[0].name}`);
+        imageRef.getDownloadURL()
+        .then((url) => {
+          this.imgToShow = url
+          console.log('it worked! url: ')
+          console.log(url)
+        }).catch((error) => {
+          console.log(error)
+
+        })
+      },
+      
+          
+           
+            
+        }
+      
+      }
+     
+    
+  
   
 </script>
 
