@@ -70,29 +70,29 @@ import firebase, { storage } from 'firebase';
     methods:{
       onFileSelected(e){
         
-       this.file = e.target.files[0];
-         
-        var storageRef = firebase.storage().ref().child()
+       file = e.target.files[0];
+         console.log(this.file)
+        var storageRef = firebase.storage().ref()
 
         storageRef.put(this.file)
       console.log(e.target.files[0])
       
 
       },
-      showfile(e){
+      showfile(){
         // let image = e.target.files[0]
-        console.log(this.file)
-        console.log(this.file[0].name)
-        var imageRef = firebase.storage().ref(`KVF_images${this.file[0].name}`);
-        imageRef.getDownloadURL()
-        .then((url) => {
-          this.imgToShow = url
-          console.log('it worked! url: ')
-          console.log(url)
-        }).catch((error) => {
-          console.log(error)
+        // console.log(this.file)
+        // console.log(this.file[0].name)
+        // var imageRef = firebase.storage().ref(`KVF_images${this.file[0].name}`);
+        // imageRef.getDownloadURL()
+        // .then((url) => {
+        //   this.imgToShow = url
+        //   console.log('it worked! url: ')
+        //   console.log(url)
+        // }).catch((error) => {
+        //   console.log(error)
 
-        })
+        // })
       },
       
           
