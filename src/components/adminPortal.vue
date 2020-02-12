@@ -63,7 +63,9 @@ import firebase, { storage } from 'firebase';
         // position: null,
         selected: null,
         text: 'hi',
-        imgToShow: ''
+        imgToShow: '',
+        downloadURL: null,
+        
         
       }
     },
@@ -71,19 +73,21 @@ import firebase, { storage } from 'firebase';
       onFileSelected(e){
         
        this.file = e.target.files[0];
-         
-        var storageRef = firebase.storage().ref().child()
+         console.log(this.file)
+         console.log('this file is currently being shown')
+        var storageRef = firebase.storage().ref(`${this.file.name}`)
 
-        storageRef.put(this.file)
+       let uploadFile = storageRef.put(this.file)
       console.log(e.target.files[0])
       
 
       },
       showfile(e){
-        // let image = e.target.files[0]
+        //   let image = e.target.files[0]
         console.log(this.file)
         console.log(this.file[0].name)
-        var imageRef = firebase.storage().ref(`KVF_images${this.file[0].name}`);
+        
+        var imageRef = firebase.storage().ref(`${this.file[0].name}`);
         imageRef.getDownloadURL()
         .then((url) => {
           this.imgToShow = url
