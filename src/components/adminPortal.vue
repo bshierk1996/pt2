@@ -63,36 +63,40 @@ import firebase, { storage } from 'firebase';
         // position: null,
         selected: null,
         text: 'hi',
-        imgToShow: ''
+        imgToShow: '',
+        downloadURL: null,
+        
         
       }
     },
     methods:{
       onFileSelected(e){
         
-       file = e.target.files[0];
+       this.file = e.target.files[0];
          console.log(this.file)
-        var storageRef = firebase.storage().ref()
+         console.log('this file is currently being shown')
+        var storageRef = firebase.storage().ref(`${this.file.name}`)
 
-        storageRef.put(this.file)
+       let uploadFile = storageRef.put(this.file)
       console.log(e.target.files[0])
       
 
       },
-      showfile(){
-        // let image = e.target.files[0]
-        // console.log(this.file)
-        // console.log(this.file[0].name)
-        // var imageRef = firebase.storage().ref(`KVF_images${this.file[0].name}`);
-        // imageRef.getDownloadURL()
-        // .then((url) => {
-        //   this.imgToShow = url
-        //   console.log('it worked! url: ')
-        //   console.log(url)
-        // }).catch((error) => {
-        //   console.log(error)
+      showfile(e){
+        //   let image = e.target.files[0]
+        console.log(this.file)
+        console.log(this.file[0].name)
+        
+        var imageRef = firebase.storage().ref(`${this.file[0].name}`);
+        imageRef.getDownloadURL()
+        .then((url) => {
+          this.imgToShow = url
+          console.log('it worked! url: ')
+          console.log(url)
+        }).catch((error) => {
+          console.log(error)
 
-        // })
+         })
       },
       
           
