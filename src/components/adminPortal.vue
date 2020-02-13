@@ -47,7 +47,7 @@
 
   
     <b-button class="submit" v-on:click="showfile">upload image</b-button>
-  <img  :v-if="this.imgToShow ==! ''" :src="this.imgToShow" alt="">
+  <img v-bind="imgToDisplay" :v-if="this.imgToShow ==! ''" :src="this.imgToShow" alt="">
   </div>
 </template>
 
@@ -56,6 +56,11 @@ import firebase, { storage } from 'firebase';
 //import fbConfig from './App.vue';
   export default {
     name: 'admin',
+    props:{
+      imgToDisplay : ''
+    }
+    ,
+
     data() {
       return {
         file: null,

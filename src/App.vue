@@ -15,13 +15,16 @@ import HelloWorld from './components/HelloWorld.vue'
 import firebase from 'firebase'
 export default {
   name: 'app',
+  props:{
+    imgToDisplay : ''
+  },
   
   components: { HelloWorld },
   mounted() {
     this.initFirebase();
   },
   data() {
-
+    $props
     //  firebase config 
     return {
       fbConfig: {
