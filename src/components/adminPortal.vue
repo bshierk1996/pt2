@@ -47,7 +47,7 @@
 
   
     <b-button class="submit" v-on:click="showfile">upload image</b-button>
-    
+  <img  :v-if="this.imgToShow ==! ''" :src="this.imgToShow" alt="">
   </div>
 </template>
 
@@ -64,7 +64,7 @@ import firebase, { storage } from 'firebase';
         selected: null,
         text: 'hi',
         imgToShow: '',
-        downloadURL: null,
+       
         
         
       }
@@ -75,7 +75,7 @@ import firebase, { storage } from 'firebase';
        this.file = e.target.files[0];
          console.log(this.file)
          console.log('this file is currently being shown')
-        var storageRef = firebase.storage().ref(`${this.file.name}`)
+        var storageRef = firebase.storage().ref(`KVF_${this.file.name}`)
 
        let uploadFile = storageRef.put(this.file)
       console.log(e.target.files[0])
@@ -87,10 +87,14 @@ import firebase, { storage } from 'firebase';
         console.log(this.file)
         console.log(this.file[0].name)
         
-        var imageRef = firebase.storage().ref(`${this.file[0].name}`);
-        imageRef.getDownloadURL()
+        var imageRef = firebase.storage().ref(`KVF_${this.file[0].name}`).getDownloadURL()
+        // imageRef.getDownloadURL()
         .then((url) => {
           this.imgToShow = url
+          console.log("--------------------------")
+          console.log(this.imgToShow)
+          console.log("--------------------------")
+
           console.log('it worked! url: ')
           console.log(url)
         }).catch((error) => {
