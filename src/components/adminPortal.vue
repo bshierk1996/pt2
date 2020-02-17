@@ -83,7 +83,7 @@ import {mapState} from 'vuex'
 
        let uploadFile = storageRef.put(this.file)
       console.log(e.target.files[0])
-        this.showImgAction(this.file)
+        this.showImgAction(this.file.name)
 
       },
       showfile(e){

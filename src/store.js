@@ -6,7 +6,7 @@ Vue.use(Vuex);
  const store = new Vuex.Store({
    state:{
      authenticated: false,
-     imgToShow: 'TEST TITLE',
+     imgToShow: '',
     //  allImgs: [],
    },
    mutations:{
@@ -14,11 +14,15 @@ Vue.use(Vuex);
        state.authenticated = status;
      },
      showImg(state, status){
+         console.log('The mutation received this:')
+         console.log(status)
        state.imgToShow = status;
      }
     },
     actions: {
       showImgAction({ commit }, status) {
+          console.log('The action received this: ')
+          console.log(status);
         commit('showImg', status);
       }
     },

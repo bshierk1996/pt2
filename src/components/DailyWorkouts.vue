@@ -36,7 +36,7 @@
             </b-row>
         </b-card>
       </div>
-      <!-- <h1>{{getImgUrl}}</h1> -->
+      <h1>{{getImgUrl}}</h1>
         <img v-if="receivedImgs !== ''" :src="getImgUrl" alt=""  />
     </div>
 </template>
@@ -46,18 +46,29 @@ import firebase, { storage } from 'firebase';
 import {mapGetters} from 'vuex';
 import sendImg from './adminPortal';
 export default {
-     computed: mapGetters(['sendImg']),
+    //  computed: mapGetters(['sendImg']),
     props: ['circuitsProp', 'title'],
     name: 'DailyWorkouts',
     data() {
         return {
             receivedImgs: [],
+            testImg: ''
         }
     },
     mounted() {
         // call function here
         // this.getImgFromFirebase()
-        console.log(this.$data)
+        console.log(mapGetters(['getImgUrl']))
+    // setInterval(() => {
+
+    //     console.log(this.getImgUrl)
+    //     console.log(this.getImgUrl.name)
+    //     }, 1000);
+
+        // this.testImg = this.getImgUrl()
+    },
+    update() {
+
     },
     methods: {
         getImgFromFirebase() {
@@ -75,7 +86,12 @@ export default {
         }
     },
     computed: {
-        ...mapGetters(['getImgUrl']),
+        getImgUrl() {
+            const fuck = mapGetters(['getImgUrl'])
+            console.log(fuck)
+            console.log(fuck[0])
+        }
+        // ...mapGetters(['getImgUrl'])
     }
 }
 </script>
