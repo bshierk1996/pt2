@@ -16,7 +16,7 @@ import firebase from 'firebase'
 export default {
   name: 'app',
   props:{
-    imgToDisplay : ''
+    
   },
   
   components: { HelloWorld },
@@ -24,7 +24,7 @@ export default {
     this.initFirebase();
   },
   data() {
-    $props
+    // $props
     //  firebase config 
     return {
       fbConfig: {

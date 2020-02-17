@@ -1,6 +1,6 @@
 export const todayProps = {
     title: 'Today\'s Workout',
-    props:[imgToDisplay],
+    // props:[],
     circuitsProp: [
         
         {

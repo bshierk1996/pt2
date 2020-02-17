@@ -1,5 +1,10 @@
 <template>
     <div class="daily-workouts-container">
+        <div class="test">
+            <!-- <div v-if="sendImg ==! '' "  class="urls">
+                <img :src="sendImg" alt="">
+            </div> -->
+        </div>
     <h1 class="workout-title">{{ title }}</h1>
             <img v-if="receivedImgs !==null " :src="receivedImgs[0]" alt=""  />
 
@@ -31,24 +36,28 @@
             </b-row>
         </b-card>
       </div>
-        <img v-if="receivedImgs !== ''" :src="receivedImgs" alt=""  />
+      <!-- <h1>{{getImgUrl}}</h1> -->
+        <img v-if="receivedImgs !== ''" :src="getImgUrl" alt=""  />
     </div>
 </template>
 
 <script>
 import firebase, { storage } from 'firebase';
-
+import {mapGetters} from 'vuex';
+import sendImg from './adminPortal';
 export default {
+     computed: mapGetters(['sendImg']),
     props: ['circuitsProp', 'title'],
     name: 'DailyWorkouts',
     data() {
         return {
-            receivedImgs: []
+            receivedImgs: [],
         }
     },
     mounted() {
         // call function here
-        this.getImgFromFirebase()
+        // this.getImgFromFirebase()
+        console.log(this.$data)
     },
     methods: {
         getImgFromFirebase() {
@@ -64,6 +73,9 @@ export default {
 
             })
         }
+    },
+    computed: {
+        ...mapGetters(['getImgUrl']),
     }
 }
 </script>

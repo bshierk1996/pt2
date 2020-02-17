@@ -47,19 +47,17 @@
 
   
     <b-button class="submit" v-on:click="showfile">upload image</b-button>
-  <img v-bind="imgToDisplay" :v-if="this.imgToShow ==! ''" :src="this.imgToShow" alt="">
-  </div>
+    <img :v-if="this.imgToShow ==! ''" :src="this.imgToShow" alt="">
+    </div>
 </template>
 
 <script>
 import firebase, { storage } from 'firebase';
+import {mapGetters, mapActions} from 'vuex'
+import {mapState} from 'vuex'
 //import fbConfig from './App.vue';
   export default {
     name: 'admin',
-    props:{
-      imgToDisplay : ''
-    }
-    ,
 
     data() {
       return {
@@ -69,6 +67,7 @@ import firebase, { storage } from 'firebase';
         selected: null,
         text: 'hi',
         imgToShow: '',
+        sendImg: '',
        
         
         
@@ -84,7 +83,7 @@ import firebase, { storage } from 'firebase';
 
        let uploadFile = storageRef.put(this.file)
       console.log(e.target.files[0])
-      
+        this.showImgAction(this.file)
 
       },
       showfile(e){
@@ -107,14 +106,9 @@ import firebase, { storage } from 'firebase';
 
          })
       },
-      
-          
-           
-            
-        }
-      
-      }
-     
+      ...mapActions(['showImgAction'])
+    }
+  }
     
   
   
