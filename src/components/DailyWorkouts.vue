@@ -59,17 +59,18 @@ export default {
         return {
             receivedImgs: [],
             testImg: '',
+            file: ''
         }
     },
     mounted() {
-          this.addFile()
+          this.addFile
         //  this.fetchTodos()
     },
     computed: {
          ...mapGetters(['allTodos', 'allFiles']),
     },
     methods: {
-         ...mapActions(['fetchTodos', 'addFile']),
+          ...mapActions(['fetchTodos', 'addFile']),
 
     },
 }

@@ -61,7 +61,7 @@ import {mapState} from 'vuex'
 
     data() {
       return {
-        file: [],
+        file: '',
         file2: null,
         // position: null,
         selected: null,

@@ -18,7 +18,7 @@ const store = new Vuex.Store({
     ],
     file:[
         {
-            
+            name:""
         }
     ]
   },
