@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
-import store from './store'
-// import Vuex from 'vuex'
+import store from './store/store'
+//  import Vuex from 'vuex'
 import BootstrapVue from 'bootstrap-vue'
 import VueRouter from 'vue-router'
 import 'bootstrap/dist/css/bootstrap.css'
@@ -26,7 +26,7 @@ import 'es6-promise/auto'
 
 Vue.use(VueRouter);
 Vue.use(BootstrapVue);
-// Vue.use(Vuex);
+//  Vue.use(Vuex);
 Vue.config.productionTip = false
 
 const router = new VueRouter({

@@ -1,11 +1,15 @@
 <template>
     <div class="daily-workouts-container">
-        <div class="test">
+        <div class="test" v-for="file in allFiles" :key="file.name">
+            <h1>{{file.name}}</h1>
+            <!-- <h1>{{file.name}}</h1> -->
             <!-- <div v-if="sendImg ==! '' "  class="urls">
                 <img :src="sendImg" alt="">
             </div> -->
+
+           <h1 class="workout-title"></h1>
         </div>
-    <h1 class="workout-title">{{ title }}</h1>
+    <h1 class="workout-title"></h1>
             <img v-if="receivedImgs !==null " :src="receivedImgs[0]" alt=""  />
 
       <div 
@@ -36,15 +40,17 @@
             </b-row>
         </b-card>
       </div>
-      <h1>{{getImgUrl}}</h1>
-        <img v-if="receivedImgs !== ''" :src="getImgUrl" alt=""  />
+      <h1>{{}}</h1>
+        <!-- <img v-if="receivedImgs !== ''" :src="getImgUrl" alt=""  /> -->
     </div>
 </template>
 
 <script>
 import firebase, { storage } from 'firebase';
-import {mapGetters} from 'vuex';
+import {mapGetters, mapActions} from 'vuex';
 import sendImg from './adminPortal';
+
+
 export default {
     //  computed: mapGetters(['sendImg']),
     props: ['circuitsProp', 'title'],
@@ -52,48 +58,22 @@ export default {
     data() {
         return {
             receivedImgs: [],
-            testImg: ''
+            testImg: '',
         }
     },
     mounted() {
-        // call function here
-        // this.getImgFromFirebase()
-        console.log(mapGetters(['getImgUrl']))
-    // setInterval(() => {
-
-    //     console.log(this.getImgUrl)
-    //     console.log(this.getImgUrl.name)
-    //     }, 1000);
-
-        // this.testImg = this.getImgUrl()
-    },
-    update() {
-
-    },
-    methods: {
-        getImgFromFirebase() {
-        
-        var imageRef = firebase.storage().ref("KVF_images").root()
-            imageRef.get()
-            .then((urls) => {
-            this.receivedImgs = urls
-            console.log('it worked! url: ')
-            console.log(urls)
-            }).catch((error) => {
-            console.log(error)
-
-            })
-        }
+          this.addFile()
+        //  this.fetchTodos()
     },
     computed: {
-        getImgUrl() {
-            const fuck = mapGetters(['getImgUrl'])
-            console.log(fuck)
-            console.log(fuck[0])
-        }
-        // ...mapGetters(['getImgUrl'])
-    }
+         ...mapGetters(['allTodos', 'allFiles']),
+    },
+    methods: {
+         ...mapActions(['fetchTodos', 'addFile']),
+
+    },
 }
+
 </script>
 
 <style>

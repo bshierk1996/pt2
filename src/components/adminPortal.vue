@@ -61,7 +61,7 @@ import {mapState} from 'vuex'
 
     data() {
       return {
-        file: null,
+        file: [],
         file2: null,
         // position: null,
         selected: null,
@@ -75,38 +75,36 @@ import {mapState} from 'vuex'
     },
     methods:{
       onFileSelected(e){
+       
         
-       this.file = e.target.files[0];
-         console.log(this.file)
-         console.log('this file is currently being shown')
-        var storageRef = firebase.storage().ref(`KVF_${this.file.name}`)
+        this.file = e.target.files[0];
+          console.log(this.file)
+          console.log('this file is currently being shown')
+         var storageRef = firebase.storage().ref(`KVF_${this.file.name}`)
 
-       let uploadFile = storageRef.put(this.file)
-      console.log(e.target.files[0])
-        this.showImgAction(this.file.name)
-
+        let uploadFile = storageRef.put(this.file)
+        
+        this.addFile(this.file)
+        
       },
       showfile(e){
         //   let image = e.target.files[0]
-        console.log(this.file)
-        console.log(this.file[0].name)
+        
         
         var imageRef = firebase.storage().ref(`KVF_${this.file[0].name}`).getDownloadURL()
         // imageRef.getDownloadURL()
         .then((url) => {
           this.imgToShow = url
-          console.log("--------------------------")
-          console.log(this.imgToShow)
-          console.log("--------------------------")
+         
 
-          console.log('it worked! url: ')
-          console.log(url)
+          
         }).catch((error) => {
           console.log(error)
 
          })
       },
-      ...mapActions(['showImgAction'])
+      ...mapActions(['addFile'])
+      
     }
   }
     
