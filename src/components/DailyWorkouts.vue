@@ -1,14 +1,17 @@
 <template>
     <div class="daily-workouts-container">
-        <div class="test" v-for="file in allFiles" :key="file.name">
+        <h2>{{ allFiles }}</h2>
+        <img v-if="url" :src="url" alt="">
+        <!-- <div v-for="file in allFiles" :key="file.name">
             <h1>{{file.name}}</h1>
-            <!-- <h1>{{file.name}}</h1> -->
-            <!-- <div v-if="sendImg ==! '' "  class="urls">
+            <h1>{{file.name}}</h1>
+            <div v-if="sendImg ==! '' "  class="urls">
                 <img :src="sendImg" alt="">
-            </div> -->
+            </div>
 
            <h1 class="workout-title"></h1>
-        </div>
+        </div> -->
+        <button @click="fbGet">fbget</button>
     <h1 class="workout-title"></h1>
             <img v-if="receivedImgs !==null " :src="receivedImgs[0]" alt=""  />
 
@@ -47,7 +50,7 @@
 
 <script>
 import firebase, { storage } from 'firebase';
-import {mapGetters, mapActions} from 'vuex';
+import {mapGetters} from 'vuex';
 import sendImg from './adminPortal';
 
 
@@ -59,21 +62,39 @@ export default {
         return {
             receivedImgs: [],
             testImg: '',
-            file: ''
+            
         }
     },
     mounted() {
-          this.addFile
-        //  this.fetchTodos()
-    },
-    computed: {
-         ...mapGetters(['allTodos', 'allFiles']),
-    },
-    methods: {
-          ...mapActions(['fetchTodos', 'addFile']),
+        setTimeout(() => {
+            console.log(this.allFiles)
+        }, 1500)
 
     },
+    computed: {
+         ...mapGetters(['allFiles']),
+    },
+    methods:{
+        fbGet(){
+             const storage = firebase.storage();
+             const pathReference = storage.ref(this.allFiles.name);
+            // for( File in this.allFiles){
+            // console.log('found this file:'+ this.allFiles.name)
+            //  }  
+            this.allFiles.map(item => {
+                const storage = firebase.storage();
+                const pathReference = storage.ref(this.allFiles.name);
+                console.log(item.name)
+                const imgref = pathReference.child(item.name);
+                imgref.getDownloadURL().then(function(url){
+                    console.log(url)
+                })
+            })
+        }
+    }
 }
+
+
 
 </script>
 

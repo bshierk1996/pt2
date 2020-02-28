@@ -7,6 +7,7 @@
 
     </b-form-group>
 
+    <!-- <h2>{{ allFiles[1].name }}</h2> -->
     <div class="upload-image mt-3">Selected: <strong>{{ selected }}</strong></div>
         <p class=''>select 3 files for each workout </p>
         <b-form-file
@@ -45,59 +46,56 @@
 
     <pre class="mt-3 mb-0">{{  }}</pre>
 
+<router-link class="linky" to="/todays-workout">Admin here</router-link>
   
-    <b-button class="submit" v-on:click="showfile">upload image</b-button>
-    <img :v-if="this.imgToShow ==! ''" :src="this.imgToShow" alt="">
+    <!-- <b-button class="submit" v-on:click="showfile">upload image</b-button>
+    <img :v-if="this.imgToShow ==! ''" :src="this.imgToShow" alt=""> -->
     </div>
 </template>
 
 <script>
 import firebase, { storage } from 'firebase';
 import {mapGetters, mapActions} from 'vuex'
-import {mapState} from 'vuex'
+// import {mapState} from 'vuex'
 //import fbConfig from './App.vue';
   export default {
     name: 'admin',
 
     data() {
       return {
-        file: '',
+        file: {},
         file2: null,
         // position: null,
         selected: null,
         text: 'hi',
         imgToShow: '',
         sendImg: '',
-       
-        
-        
       }
     },
     methods:{
       onFileSelected(e){
        
-        
         this.file = e.target.files[0];
-          console.log(this.file)
-          console.log('this file is currently being shown')
+        this.addFile(this.file)
+          // console.log('this file is currently being shown')
          var storageRef = firebase.storage().ref(`KVF_${this.file.name}`)
 
         let uploadFile = storageRef.put(this.file)
         
-        this.addFile(this.file)
+
+        setTimeout(() => {
+          console.log(this.allFiles)
+        }, 1200)
         
       },
       showfile(e){
         //   let image = e.target.files[0]
-        
-        
+
         var imageRef = firebase.storage().ref(`KVF_${this.file[0].name}`).getDownloadURL()
         // imageRef.getDownloadURL()
         .then((url) => {
           this.imgToShow = url
-         
 
-          
         }).catch((error) => {
           console.log(error)
 
@@ -105,7 +103,10 @@ import {mapState} from 'vuex'
       },
       ...mapActions(['addFile'])
       
-    }
+    },
+    computed: {
+         ...mapGetters(['allFiles']),
+    },
   }
     
   
@@ -130,6 +131,9 @@ div{
 }
 .upload{
   width: 800px;
+}
+.linky {
+  color: black;
 }
 @media screen and(max-width: 820px) {
   .upload-image{

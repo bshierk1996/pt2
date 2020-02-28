@@ -48,13 +48,13 @@ export default {
               })
             },
             adminAuth(){
-              // if (this.email == 'admin@gmail.com' && this.password =='admin') {
-              //   this.$store.commit("setAuthentication", true);
-              //   this.$router.replace({path:"/admin"})
-              //   alert(`admin logged in`)
-              // }else{
-              //   console.log('admin has logged failed')
-              // }
+               if (this.email == 'admin@gmail.com' && this.password =='admin') {
+                 this.$store.commit("setAuthentication", true);
+                 this.$router.replace({path:"/admin"})
+                 alert(`admin logged in`)
+               }else{
+                 console.log('admin has logged failed')
+               }
             }
             
             

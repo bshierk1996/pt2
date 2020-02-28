@@ -16,17 +16,20 @@ const store = new Vuex.Store({
           name: 'todo2'
       }
     ],
-    file:[
-        {
-            name:""
-        }
+    files:[
     ]
   },
   mutations: {
     setTodos:(state,todos) => (state.todos = todos),
-    setFile:(state,file) => {
+    setFile:(state, file) => {
+      console.log("Reached the add file mutation")
       // Add to the array
-      state.file = [ ...state.file, file ]
+      // state.files = [ ...state.files, file ]
+      // state.files.push(file)
+      Vue.set(state.files, state.files.length, file);
+
+      console.log('Here is the new state:')
+      console.log(state)
     }
   },
   actions: {
@@ -36,13 +39,14 @@ const store = new Vuex.Store({
     },
     addFile({ commit }, file) {
         // const displayFile = file
+        console.log('Reached the addfile action!')
         commit('setFile', file)
     }
 
   },
   getters: {
     allTodos: (state) => state.todos,
-    allFiles: (state) => state.file
+    allFiles: (state) => state.files
   }
 })
 
