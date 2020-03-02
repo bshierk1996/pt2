@@ -17,7 +17,8 @@ const store = new Vuex.Store({
       }
     ],
     files:[
-    ]
+    ],
+    authStatus: false
   },
   mutations: {
     setTodos:(state,todos) => (state.todos = todos),
@@ -30,7 +31,9 @@ const store = new Vuex.Store({
 
       console.log('Here is the new state:')
       console.log(state)
-    }
+    },
+     setAuthentication:(state,authStatus) => {state.authStatus = status}
+
   },
   actions: {
     fetchTodos({ commit }, response){

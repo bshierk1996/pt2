@@ -23,6 +23,7 @@ import mobile from './components/mobileNav'
 import dashBoard from './components/dashboard'
 import admin from './components/adminPortal'
 import 'es6-promise/auto'
+import adminLogin from './components/adminLogin'
 
 Vue.use(VueRouter);
 Vue.use(BootstrapVue);
@@ -52,13 +53,9 @@ const router = new VueRouter({
     {path: '/content', component: content},
     {path: '/nav', component: mobile},
     {path: '/dashboard', component: dashBoard},
-    {path: '/admin',name:'admin', component: admin },//beforeEnter: (to,from,next) =>{
-    //   if(store.state.authenticated == false){
-    //     next(false);
-    //   }else{
-    //     next()
-    //   }
-    //}},
+    {path: '/admin',name:'admin', component: admin,  },
+    // meta:{requiresAuth:true  }
+    {path:'/adminLogin',name:'adminLogin',component:adminLogin}
 
    
   ],
@@ -69,6 +66,16 @@ const router = new VueRouter({
 },
 
 )
+//  router.beforeEach((to,from,next)=>{
+//    const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+//    const isAuthenticated = firebase.auth().currentUser;
+//    console.log('isauthenticated',isAuthenticated);
+//    if(requiresAuth && !isAuthenticated){
+//      next('/admin');
+//    }else{
+//      next('/');
+//    }
+//  });
 
 new Vue({
   router,

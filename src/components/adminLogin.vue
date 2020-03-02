@@ -1,5 +1,6 @@
 <template>
     <div class="container-fluid">
+        <h1>Admin login </h1>
       <form @submit.prevent="login">
         <div class="form-row">
           <div class="col-md-4 mb-3">
@@ -31,28 +32,17 @@ export default {
         },
         methods: {
           async login(){
-              if (this.email == 'test@test.com' && this.password == 'test11') {
-                await firebase.auth().signInWithEmailAndPassword(this.email, this.password);
-                this.$store.commit('authstatus',true);
-                this.$router.replace({path: '/admin'});
-                
-              }else{
-                await firebase.auth().signInWithEmailAndPassword(this.email, this.password);
-                this.$store.commit('authstatus',false);
-                this.$router.replace({path: '/'});
-              }
-
-          //   try{
-          //   const val = await firebase.auth().signInWithEmailAndPassword(this.email, this.password)
-          //   console.log(val);
-          //   this.$router.replace({path:'/admin'})
-          // }catch(err){
-          //   console.log(err)
-          // }
-          // }
+            try{
+            const val = await firebase.auth().signInWithEmailAndPassword(this.email, this.password)
+            console.log(val);
+            this.$router.replace({name:'admin'})
+          }catch(err){
+            console.log(err)
+          }
+          }
         }
 }
-}
+
 </script>
 
 

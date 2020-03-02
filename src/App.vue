@@ -8,7 +8,6 @@
   </div>
 </template>
 
-<script src="https://js.stripe.com/v3/"></script>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
@@ -38,7 +37,10 @@ export default {
         measurementId: "G-MWYYGCRG0M"
       },
       project: null,
-      activeUser: {}
+      activeUser: {},
+      // stripe : Stripe('pk_test_XuQQEmqPkMv0o5KoXpYzmZuy00wf7pyLXu');
+
+      // Stripe.setP
     }
   },
   methods: {
@@ -51,10 +53,7 @@ export default {
         //this.activeUser.name = snapshot.child("name").val()
         //this.activeUser.email = snapshot.child("email").val()
       },
-      loginUserFB(){
-        const auth = firebase.auth()
-        auth.signInWithEmailAndPassword(email,password)
-      }
+      
     },
 }
 
