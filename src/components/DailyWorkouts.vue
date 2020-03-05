@@ -138,15 +138,18 @@ export default {
              const storage = firebase.storage();
              const pathReference = storage.ref(this.allFiles.name)
 
-            // this.allFiles.map(item => {
-            //     const storage = firebase.storage();
-            //     const pathReference = storage.ref(this.allFiles.name);
-            //     console.log(item.name)
-            //     const imgref = pathReference.child(item.name);
-            //     imgref.getDownloadURL().then(function(url){
-            //         console.log(url)
-            //     })
-            // })
+            this.allFiles.map(item => {
+                const storage = firebase.storage();
+                const pathReference = storage.ref(this.allFiles.name);
+                console.log(item.name)
+                const imgref = pathReference.child(item.name);
+                imgref.getDownloadURL().then(function(url){
+                    console.log(url)
+                })
+            })
+        },
+        displayWorkout(){
+            
         }
 
             // this.allFiles.map(item => {

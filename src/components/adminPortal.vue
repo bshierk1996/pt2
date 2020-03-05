@@ -21,31 +21,48 @@
           placeholder="Choose a file or drop it here..."
           drop-placeholder="Drop file here..."
       ></b-form-file>
-    <div class="mt-3">Selected file: {{ file ? file.name : '' }}</div>
-
-    <p class="step-2"> insert the text for the workouts</p>
-    <b-form-textarea
-      class="workout-text"
-      id="textarea"
-      v-model="text"
-      placeholder="workout text field"
-      rows="3"
-      max-rows="6"
-    >{{text}}</b-form-textarea>
-
-    <p>insert the durration/time for each workout</p>
-
+<div></div>
     <b-form-textarea
       id="textarea"
       class='workout-durration'
-      v-model="text"
-      placeholder="workout durration "
+      v-model="workoutName"
+      placeholder="workout name "
       rows="3"
       max-rows="6"
     >{{text}}</b-form-textarea>
-
-    <pre class="mt-3 mb-0">{{  }}</pre>
-
+     <b-form-textarea
+      id="textarea"
+      class='workout-durration'
+      v-model="description"
+      placeholder="workout description "
+      rows="3"
+      max-rows="6"
+    >{{text}}</b-form-textarea>
+     <b-form-textarea
+      id="textarea"
+      class='workout-durration'
+      v-model="sets"
+      placeholder="workout-sets "
+      rows="3"
+      max-rows="6"
+    >{{text}}</b-form-textarea>
+     <b-form-textarea
+      id="textarea"
+      class='workout-durration'
+      v-model="seconds"
+      placeholder="workout-seconds "
+      rows="3"
+      max-rows="6"
+    >{{text}}</b-form-textarea>
+     <b-form-textarea
+      id="textarea"
+      class='workout-durration'
+      v-model="rest"
+      placeholder="workout-rest durration "
+      rows="3"
+      max-rows="6"
+    >{{text}}</b-form-textarea>
+<button v-on:click="updateWorkoutField">console.log workout field</button>
 <router-link class="linky" to="/todays-workout">Admin here</router-link>
   
 <b-button class="submit" v-on:click="showfile">upload image</b-button> 
@@ -70,6 +87,12 @@ import {mapGetters, mapActions} from 'vuex'
         text: 'hi',
         imgToShow: '',
         sendImg: '',
+        db: firebase.firestore(),
+        rest: '',
+        seconds: '',
+        sets: '',
+        description: '',
+        workoutName:''
       }
     },
     methods:{
@@ -93,6 +116,7 @@ import {mapGetters, mapActions} from 'vuex'
           console.log(this.allFiles)
         }, 1200)
         
+        
       },
       showfile(e){
         const dateObj = new Date();
@@ -112,6 +136,34 @@ import {mapGetters, mapActions} from 'vuex'
           console.log(error)
 
          })
+        //  this.allFiles.map(item =>{ 
+        //   const storage = firebase.storage();
+        //   const pathReference = storage.ref(this.allFiles.name);
+        //   console.log(item.name)
+        //   const imgref = pathReference.child(item.name);
+        //   imgref.getDownloadURL().then(function(url){
+        //     console.log(url)
+        //   })
+        // })
+      },
+      updateWorkoutField(){
+        const workoutData = {
+          rest: this.rest,
+          seconds: this.seconds,
+          sets:this.sets,
+          description: this.description,
+          workoutName:this.workoutName
+          
+        }
+        console.log(workoutData)
+        this.db.collection('fitness-images').add({
+          rest: this.rest,
+          seconds: this.seconds,
+          sets:this.sets,
+          description: this.description,
+          workoutName:this.workoutName
+           
+        })
       },
       ...mapActions(['addFile'])
       
