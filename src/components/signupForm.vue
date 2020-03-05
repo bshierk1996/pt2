@@ -70,6 +70,8 @@
       <div class="btn btn-primary" v-on:click="submitUser()">Submit form</div>
       
     </form>
+
+
   </div>
  
 </template>
@@ -83,6 +85,14 @@ import  firebase from 'firebase';
  //import { stripeKey, stripeOptions } from './stripeConfig.json'
 //  import { Card, createToken } from 'vue-stripe-elements-plus'
 export default {
+  mounted(){
+  function payment() {
+    var self=this;
+    self.stripe= Stripe(self.spk);
+    self.card = self.stripe.elements().create('card');
+    self.card.mount(self.$refs.card);
+  }
+  },
  
         name: 'signupData',
         data() {
@@ -100,6 +110,7 @@ export default {
                     email:'',
                     address:'',
                     db: firebase.firestore(),
+                  
                 };
         },
         methods: {
@@ -128,9 +139,12 @@ export default {
               })
  
        },
-      
        
-    }
+    
+}
+      
+  
+    
 }
     
 
@@ -151,5 +165,33 @@ form{
   
 
 }
+.StripeElement {
+  box-sizing: border-box;
+
+  height: 40px;
+
+  padding: 10px 12px;
+
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background-color: white;
+
+  box-shadow: 0 1px 3px 0 #e6ebf1;
+  -webkit-transition: box-shadow 150ms ease;
+  transition: box-shadow 150ms ease;
+}
+
+.StripeElement--focus {
+  box-shadow: 0 1px 3px 0 #cfd7df;
+}
+
+.StripeElement--invalid {
+  border-color: #fa755a;
+}
+
+.StripeElement--webkit-autofill {
+  background-color: #fefde5 !important;
+}
+
 
 </style>

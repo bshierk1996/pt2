@@ -12,14 +12,20 @@
            <h1 class="workout-title"></h1>
         </div> -->
         <button @click="fbGet">fbget</button>
+        <button @click="downloadURL">show url</button>
+
     <h1 class="workout-title"></h1>
-            <img v-if="receivedImgs !==null " :src="receivedImgs[0]" alt=""  />
+            <!-- <img v-if="receivedImgs !==null " :src="receivedImgs[0]" alt=""  /> -->
+            <div v-for="(url, index) in receivedImgs" :key="`${index}`">
+                <img :src="url" alt="">
+            </div>
 
       <div 
         v-for="(circuit, index) in circuitsProp"
         :key="`circuit-${index}`"
         class="daily-circuit"
     >
+    
         <b-card class="circuit-info">
             <h1>{{ circuit.name }}</h1>
             <p>{{ circuit.desc }}</p>
@@ -49,7 +55,14 @@
 </template>
 
 <script>
-import firebase, { storage } from 'firebase';
+import  firebase from 'firebase/app';
+import 'firebase/firestore';
+import 'firebase/auth';
+import 'firebase/storage';
+
+
+
+
 import {mapGetters} from 'vuex';
 import sendImg from './adminPortal';
 
@@ -62,6 +75,7 @@ export default {
         return {
             receivedImgs: [],
             testImg: '',
+            url: ''
             
         }
     },
@@ -69,6 +83,8 @@ export default {
         setTimeout(() => {
             console.log(this.allFiles)
         }, 1500)
+        this.fbGet()
+        // this.downloadURL()
 
     },
     computed: {
@@ -76,23 +92,80 @@ export default {
     },
     methods:{
         fbGet(){
+            const dateObj = new Date();
+            const month = dateObj.getMonth() + 1; //months from 1-12
+            const day = dateObj.getDate();
+            const year = dateObj.getFullYear();
+            const newdate = year + "/" + month + "/" + day + '/';
+            
+          const  fbstorage = firebase.storage()
+          const storageRef = fbstorage.ref()
+
+
+
+             const listRef = storageRef.child(newdate)
+
+            //  const pathReference = storage.ref(newdate);
+            listRef.listAll().then((res) => {
+                console.log('top level')
+                console.log(res)
+                res.prefixes.forEach((folderRef) => {
+                    console.log('folder ref')
+                    console.log(folderRef)
+                });
+                res.items.forEach((itemRef) => {
+                    console.log('item ref')
+                    console.log(itemRef)
+                    const url = `https://firebasestorage.googleapis.com/v0/b/keisha-fitness.appspot.com/o/${year}%2F${month}%2F${day}%2F${itemRef.name}?alt=media&token=b3818a3a-3924-4f44-bab0-a168cf2a0d0c`
+                    
+                    this.receivedImgs = [ ...this.receivedImgs, url ]
+                    // console.log(storageRef)
+                });
+            }).catch((error) => {
+                console.log(error)
+            });
+        },
+
+
+        downloadURL(){
+            const dateObj = new Date();
+            const month = dateObj.getMonth() + 1; //months from 1-12
+            const day = dateObj.getDate();
+            const year = dateObj.getFullYear();
+            const newdate = year + "/" + month + "/" + day + '/';
+        
+
              const storage = firebase.storage();
-             const pathReference = storage.ref(this.allFiles.name);
-            // for( File in this.allFiles){
-            // console.log('found this file:'+ this.allFiles.name)
-            //  }  
-            this.allFiles.map(item => {
-                const storage = firebase.storage();
-                const pathReference = storage.ref(this.allFiles.name);
-                console.log(item.name)
-                const imgref = pathReference.child(item.name);
-                imgref.getDownloadURL().then(function(url){
-                    console.log(url)
-                })
-            })
+             const pathReference = storage.ref(this.allFiles.name)
+
+            // this.allFiles.map(item => {
+            //     const storage = firebase.storage();
+            //     const pathReference = storage.ref(this.allFiles.name);
+            //     console.log(item.name)
+            //     const imgref = pathReference.child(item.name);
+            //     imgref.getDownloadURL().then(function(url){
+            //         console.log(url)
+            //     })
+            // })
+        }
+
+            // this.allFiles.map(item => {
+            //     const storage = firebase.storage();
+            //     const pathReference = storage.ref(this.allFiles.name);
+
+            //     const imgref = pathReference.child(item.name);
+            //     imgref.getDownloadURL().then((url) => {
+            //         console.log('URL: ')
+            //         console.log(url)
+            //        this.receivedImgs = [ ...this.receivedImgs, url ]
+            //         var storageRef = firebase.storage().ref(`${newdate}`);
+            //         console.log(newdate)
+                   
+            //     })
+            // })
         }
     }
-}
+
 
 
 

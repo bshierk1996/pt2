@@ -11,7 +11,13 @@
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
-import firebase from 'firebase'
+
+// import * as firebase from 'firebase/app';
+import  firebase from 'firebase/app';
+import 'firebase/firestore';
+import 'firebase/auth';
+import 'firebase/storage';
+
 export default {
   name: 'app',
   props:{

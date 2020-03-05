@@ -48,8 +48,8 @@
 
 <router-link class="linky" to="/todays-workout">Admin here</router-link>
   
-    <!-- <b-button class="submit" v-on:click="showfile">upload image</b-button>
-    <img :v-if="this.imgToShow ==! ''" :src="this.imgToShow" alt=""> -->
+<b-button class="submit" v-on:click="showfile">upload image</b-button> 
+    <img :v-if="this.imgToShow ==! ''" :src="this.imgToShow" alt=""> 
     </div>
 </template>
 
@@ -74,11 +74,17 @@ import {mapGetters, mapActions} from 'vuex'
     },
     methods:{
       onFileSelected(e){
-       
+        const dateObj = new Date();
+        const month = dateObj.getMonth() + 1; //months from 1-12
+        const day = dateObj.getDate();
+        const year = dateObj.getFullYear();
+
+        const newdate = year + "/" + month + "/" + day + '/';
+       console.log(newdate)
         this.file = e.target.files[0];
         this.addFile(this.file)
           // console.log('this file is currently being shown')
-         var storageRef = firebase.storage().ref(`KVF_${this.file.name}`)
+         var storageRef = firebase.storage().ref(`${newdate}${this.file.name}`)
 
         let uploadFile = storageRef.put(this.file)
         
@@ -89,9 +95,15 @@ import {mapGetters, mapActions} from 'vuex'
         
       },
       showfile(e){
+        const dateObj = new Date();
+        const month = dateObj.getMonth() + 1; //months from 1-12
+        const day = dateObj.getDate();
+        const year = dateObj.getFullYear();
+
+        const newdate = year + "/" + month + "/" + day + '/';
         //   let image = e.target.files[0]
 
-        var imageRef = firebase.storage().ref(`KVF_${this.file[0].name}`).getDownloadURL()
+        var imageRef = firebase.storage().ref(`${newdate}${this.file[0].name}`).getDownloadURL()
         // imageRef.getDownloadURL()
         .then((url) => {
           this.imgToShow = url
