@@ -13,6 +13,7 @@
         </div> -->
         <button @click="fbGet">fbget</button>
         <button @click="downloadURL">show url</button>
+        <button @click="displayWorkout">wokout</button>
 
     <h1 class="workout-title"></h1>
             <!-- <img v-if="receivedImgs !==null " :src="receivedImgs[0]" alt=""  /> -->
@@ -55,17 +56,19 @@
 </template>
 
 <script>
-import  firebase from 'firebase/app';
+import  firebase, { firestore } from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 import 'firebase/storage';
-
-
-
-
 import {mapGetters} from 'vuex';
 import sendImg from './adminPortal';
+const dateObj = new Date();
+        const month = dateObj.getMonth() + 1; //months from 1-12
+        const day = dateObj.getDate();
+        const year = dateObj.getFullYear();
 
+        const todaysTimeStamp = year + "/" + month + "/" + day + '/';
+        console.log(todaysTimeStamp)
 
 export default {
     //  computed: mapGetters(['sendImg']),
@@ -75,7 +78,9 @@ export default {
         return {
             receivedImgs: [],
             testImg: '',
-            url: ''
+            url: '',
+            db: firebase.firestore(),
+            
             
         }
     },
@@ -149,6 +154,28 @@ export default {
             })
         },
         displayWorkout(){
+             const dateObj = new Date();
+            const month = dateObj.getMonth() + 1; //months from 1-12
+            const day = dateObj.getDate();
+            const year = dateObj.getFullYear();
+            const newdate = year + "/" + month + "/" + day + '/';
+
+            this.db.collection('fitness-images').where('timestamp','==', todaysTimeStamp).get().then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            // doc.data() is never undefined for query doc snapshots
+            console.log(doc.id, " => ", doc.data());
+        });
+    })
+    .catch(function(error) {
+        console.log("Error getting documents: ", error);
+    });
+
+
+
+
+
+
+        
             
         }
 
