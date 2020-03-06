@@ -18,7 +18,7 @@
 
     </b-card-text>
 
-    <b-button href="#" variant="primary"><router-link to="/realtime">Go somewhere</router-link></b-button>
+    <b-button href="#" class="butt"><router-link to="/realtime">Go somewhere</router-link></b-button>
   </b-card>
 </div>
 </template>
@@ -34,5 +34,10 @@ export default {
 
 
 <style>
+.butt{
+  background: #A2D618;
+  color: ivory;
+border: #A2D618;
+}
 
 </style>

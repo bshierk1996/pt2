@@ -2,22 +2,35 @@
 
   <div id="app">
     <HelloWorld />
-    <h1>Active user is {{ activeUser.name }}</h1>
+    
+    <!-- <h1>Active user is {{ activeUser.name }}</h1> -->
     <router-view></router-view>
   </div>
 </template>
 
+
 <script>
 import HelloWorld from './components/HelloWorld.vue'
-import * as firebase from 'firebase';
+
+// import * as firebase from 'firebase/app';
+import  firebase from 'firebase/app';
+import 'firebase/firestore';
+import 'firebase/auth';
+import 'firebase/storage';
 
 export default {
   name: 'app',
+  props:{
+    
+  },
+  
   components: { HelloWorld },
   mounted() {
     this.initFirebase();
   },
   data() {
+    // $props
+    //  firebase config 
     return {
       fbConfig: {
         apiKey: "AIzaSyAmtuksKKkhZlWGl57BbAwjNgViH2p0xfA",
@@ -30,23 +43,26 @@ export default {
         measurementId: "G-MWYYGCRG0M"
       },
       project: null,
-      activeUser: {}
+      activeUser: {},
+      // stripe : Stripe('pk_test_XuQQEmqPkMv0o5KoXpYzmZuy00wf7pyLXu');
+
+      // Stripe.setP
     }
   },
   methods: {
     initFirebase() {
       // Initialize Firebase
-      this.project = firebase.initializeApp(this.fbConfig);
       firebase.analytics();
-
-      const ref = firebase.database().ref('users/brentman');
-      ref.once('value').then((snapshot) => {
-        this.activeUser.name = snapshot.child("name").val()
-        this.activeUser.email = snapshot.child("email").val()
-      })
-    }
-  }
+  
+      //const ref = firebase.database().ref('users/brentman');
+      //ref.once('value').then((snapshot) => {
+        //this.activeUser.name = snapshot.child("name").val()
+        //this.activeUser.email = snapshot.child("email").val()
+      },
+      
+    },
 }
+
 </script>
 
 <style>
@@ -59,5 +75,17 @@ export default {
 body{
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.4
+}
+
+@media screen and (max-width: 800px) {
+  .nav-row {
+    display: '/components/mobileNav' ;
+  }
+}
+  @media screen and (max-width: 799px) {
+  .mobile-nav-row {
+    display: contents;
+  }
+
 }
 </style>
