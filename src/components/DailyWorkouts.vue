@@ -2,10 +2,10 @@
 
     <div class="daily-workouts-container">
         <b-card class="workouts"  v-for="(workout, idx) in workoutText" :key="idx">{{ workout.workoutName }}</b-card>
-        
+        <!--     -->
 
-         <img v-if="url" :src="url" alt=""> 
-         <div v-for="file in allFiles" :key="file.name">
+        <!-- <img v-if="url" :src="url" alt=""> -->
+        <!-- <div v-for="file in allFiles" :key="file.name">
             <h1>{{file.name}}</h1>
             <h1>{{file.name}}</h1>
             <div v-if="sendImg ==! '' "  class="urls">
@@ -13,7 +13,7 @@
             </div>
 
            <h1 class="workout-title"></h1>
-        </div> 
+        </div> -->
         <button @click="fbGet">fbget</button>
         <button @click="downloadURL">show url</button>
         <button @click="displayWorkout">wokout</button>
@@ -173,8 +173,8 @@ export default {
             const year = dateObj.getFullYear();
             const newdate = year + "/" + month + "/" + day + '/';
             
-            this.db.collection('circuits').get().doc('circuits1').then(
-                console.log(doc.data)
+            this.db.collection('circuits').get().doc('circuit1').then(
+                console.log
             )
             
             // this.workoutSplit.map(item => {
@@ -193,14 +193,14 @@ export default {
                 // .catch(function(error) {
                 //     console.log("Error getting documents: ", error);
                 // });
-            }
+            })
 
-            // console.log(this.workoutText)
+            console.log(this.workoutText)
    
     },
        
     }
-
+}
     
 
 
