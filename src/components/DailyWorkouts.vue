@@ -2,10 +2,10 @@
 
     <div class="daily-workouts-container">
         <b-card class="workouts"  v-for="(workout, idx) in workoutText" :key="idx">{{ workout.workoutName }}</b-card>
-        <!--     -->
+        
 
-        <!-- <img v-if="url" :src="url" alt=""> -->
-        <!-- <div v-for="file in allFiles" :key="file.name">
+         <img v-if="url" :src="url" alt=""> -->
+         <div v-for="file in allFiles" :key="file.name">
             <h1>{{file.name}}</h1>
             <h1>{{file.name}}</h1>
             <div v-if="sendImg ==! '' "  class="urls">
@@ -13,7 +13,7 @@
             </div>
 
            <h1 class="workout-title"></h1>
-        </div> -->
+        </div> 
         <button @click="fbGet">fbget</button>
         <button @click="downloadURL">show url</button>
         <button @click="displayWorkout">wokout</button>
@@ -60,10 +60,14 @@
 </template>
 
 <script>
-import  firebase, { firestore } from 'firebase/app';
+import  firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 import 'firebase/storage';
+
+
+
+
 import {mapGetters} from 'vuex';
 import sendImg from './adminPortal';
 const dateObj = new Date();
@@ -193,14 +197,14 @@ export default {
                 // .catch(function(error) {
                 //     console.log("Error getting documents: ", error);
                 // });
-            })
+            }
 
-            console.log(this.workoutText)
+           
    
     },
        
     }
-}
+
     
 
 

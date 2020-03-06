@@ -75,15 +75,6 @@ import firebase, { storage } from 'firebase';
 import {mapGetters, mapActions} from 'vuex'
 // import {mapState} from 'vuex'
 //import fbConfig from './App.vue';
-
-        const dateObj = new Date();
-        const month = dateObj.getMonth() + 1; //months from 1-12
-        const day = dateObj.getDate();
-        const year = dateObj.getFullYear();
-
-        const timestamp = year + "/" + month + "/" + day + '/';
-
-
   export default {
     name: 'admin',
 
@@ -114,7 +105,6 @@ import {mapGetters, mapActions} from 'vuex'
         const year = dateObj.getFullYear();
 
         const newdate = year + "/" + month + "/" + day + '/';
-        this.timestamp =newdate
        console.log(newdate)
         this.file = e.target.files[0];
         this.addFile(this.file)
