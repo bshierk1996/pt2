@@ -1,8 +1,11 @@
 <template>
+
     <div class="daily-workouts-container">
-        <h2>{{ allFiles }}</h2>
-        <img v-if="url" :src="url" alt="">
-        <!-- <div v-for="file in allFiles" :key="file.name">
+        <b-card class="workouts"  v-for="(workout, idx) in workoutText" :key="idx">{{ workout.workoutName }}</b-card>
+        
+
+         <img v-if="url" :src="url" alt=""> 
+         <div v-for="file in allFiles" :key="file.name">
             <h1>{{file.name}}</h1>
             <h1>{{file.name}}</h1>
             <div v-if="sendImg ==! '' "  class="urls">
@@ -10,10 +13,11 @@
             </div>
 
            <h1 class="workout-title"></h1>
-        </div> -->
+        </div> 
         <button @click="fbGet">fbget</button>
         <button @click="downloadURL">show url</button>
         <button @click="displayWorkout">wokout</button>
+        <!-- <button @click="firestore">firestore</button> -->
 
     <h1 class="workout-title"></h1>
             <!-- <img v-if="receivedImgs !==null " :src="receivedImgs[0]" alt=""  /> -->
@@ -22,7 +26,7 @@
             </div>
 
       <div 
-        v-for="(circuit, index) in circuitsProp"
+        v-for="(circuit, index) in workoutText"
         :key="`circuit-${index}`"
         class="daily-circuit"
     >
@@ -35,7 +39,7 @@
         <b-card class="workouts">
             <b-row no-gutters>
                 <b-col
-                    v-for="(workout, index2) in circuit.workouts"
+                    v-for="(workout, index2) in circuit"
                     :key="`workout-${index2}`"
                     md="4"
                 >
@@ -63,12 +67,14 @@ import 'firebase/storage';
 import {mapGetters} from 'vuex';
 import sendImg from './adminPortal';
 const dateObj = new Date();
-        const month = dateObj.getMonth() + 1; //months from 1-12
-        const day = dateObj.getDate();
-        const year = dateObj.getFullYear();
+const month = dateObj.getMonth() + 1; //months from 1-12
+const day = dateObj.getDate();
+const year = dateObj.getFullYear();
 
-        const todaysTimeStamp = year + "/" + month + "/" + day + '/';
-        console.log(todaysTimeStamp)
+const todaysTimeStamp = year + "/" + month + "/" + day + '/';
+console.log(todaysTimeStamp);
+
+
 
 export default {
     //  computed: mapGetters(['sendImg']),
@@ -80,10 +86,17 @@ export default {
             testImg: '',
             url: '',
             db: firebase.firestore(),
+            workoutText: [],
+            workoutSplit: [1, 2, 3],
             
             
         }
     },
+//     firestore() {
+//     return {
+//       workoutText: db.collection('fitness-images').orderBy('createdAt')
+//     }
+//   },
     mounted() {
         setTimeout(() => {
             console.log(this.allFiles)
@@ -159,47 +172,84 @@ export default {
             const day = dateObj.getDate();
             const year = dateObj.getFullYear();
             const newdate = year + "/" + month + "/" + day + '/';
-
-            this.db.collection('fitness-images').where('timestamp','==', todaysTimeStamp).get().then(function(querySnapshot) {
-        querySnapshot.forEach(function(doc) {
-            // doc.data() is never undefined for query doc snapshots
-            console.log(doc.id, " => ", doc.data());
-        });
-    })
-    .catch(function(error) {
-        console.log("Error getting documents: ", error);
-    });
-
-
-
-
-
-
-        
             
-        }
+            this.db.collection('circuits').get().doc('circuits1').then(
+                console.log(doc.data)
+            )
+            
+            // this.workoutSplit.map(item => {
+                // this.db.collection("circuits").get().then((querySnapshot) => {
+            
+                //         querySnapshot.docs.forEach((doc) => {
+                //         // doc.data() is never undefined for query doc snapshots
+                //         console.log(doc.id, " => ", doc.data());
+                //         this.workoutText[item] = [ ...this.workoutText[item], doc.data()]
+                //         console.log(this.workoutText)
+                //         // The same as vvv
+                //         // this.workoutText.push(doc.data())
 
-            // this.allFiles.map(item => {
-            //     const storage = firebase.storage();
-            //     const pathReference = storage.ref(this.allFiles.name);
+                //     })
+                // // })
+                // .catch(function(error) {
+                //     console.log("Error getting documents: ", error);
+                // });
+            }
 
-            //     const imgref = pathReference.child(item.name);
-            //     imgref.getDownloadURL().then((url) => {
-            //         console.log('URL: ')
-            //         console.log(url)
-            //        this.receivedImgs = [ ...this.receivedImgs, url ]
-            //         var storageRef = firebase.storage().ref(`${newdate}`);
-            //         console.log(newdate)
-                   
-            //     })
-            // })
-        }
+            // console.log(this.workoutText)
+   
+    },
+       
     }
 
+    
 
 
+            // [
+            //     {
+            //         circuit1: [
+            //             {
+            //                 workoutname: 'pullups',
+            //             },
+            //                                     {
+            //                 workoutname: 'pushups',
+            //             },
+                        //             },
+            //                                     {
+            //                 workoutname: 'pushups',
+            //             }
+            //         ],
+            //         circuit2: [
+            //             {
+            //                 workoutname: 'pullups',
+            //             },
+            //                                     {
+            //                 workoutname: 'pushups',
+            //             },
+                        //             },
+            //                                     {
+            //                 workoutname: 'pushups',
+            //             }
+            //         ],
+            //         circuit3: [
+            //             {
+            //                 workoutname: 'pullups',
+            //             },
+            //                                     {
+            //                 workoutname: 'pushups',
+            //             },
+                        //             },
+            //                                     {
+            //                 workoutname: 'pushups',
+            //             }
+            //         ]
+            //     }
+            // ]
 
 </script>
+
+
+
+
 
 <style>
 body {

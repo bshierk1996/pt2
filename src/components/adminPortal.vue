@@ -102,7 +102,8 @@ import {mapGetters, mapActions} from 'vuex'
         sets: '',
         description: '',
         workoutName:'',
-        timestamp: timestamp
+        timestamp: timestamp,
+        createdAt: new Date()
       }
     },
     methods:{
@@ -164,7 +165,8 @@ import {mapGetters, mapActions} from 'vuex'
           sets:this.sets,
           description: this.description,
           workoutName:this.workoutName,
-          timestamp:this.timestamp
+          timestamp:this.timestamp,
+          createdAt: new Date()
           
         }
         console.log(workoutData)
@@ -174,7 +176,8 @@ import {mapGetters, mapActions} from 'vuex'
           sets:this.sets,
           description: this.description,
           workoutName:this.workoutName,
-          timestamp: this.timestamp
+          timestamp: this.timestamp,
+          createdAt: new Date()
 
            
         })
