@@ -160,15 +160,36 @@ export default {
             const year = dateObj.getFullYear();
             const newdate = year + "/" + month + "/" + day + '/';
 
-            this.db.collection('fitness-images').where('timestamp','==', todaysTimeStamp).get().then(function(querySnapshot) {
-        querySnapshot.forEach(function(doc) {
-            // doc.data() is never undefined for query doc snapshots
-            console.log(doc.id, " => ", doc.data());
-        });
-    })
-    .catch(function(error) {
-        console.log("Error getting documents: ", error);
-    });
+            // const myTest = this.db.collection('circuits').doc(`${}`)
+            //     .where('timestamp','==', todaysTimeStamp).snapshotChanges();
+            //     // .orderBy('createdAt').
+           
+        //    const myTest = async () => {
+              
+        //       const collection = this.db.collection('circuits').where('timestamp', '==', newdate).get().then((querySnapshot)=>{
+        //         querySnapshot.docs.forEach(doc =>{
+        //             myTest(doc);
+        //         })
+        //       })
+             
+        //           console.log(doc.workoutName)
+             
+        //    }
+        //    myTest();
+
+        this.db.collection('circuits')
+  .where('timestamp', '==', newdate)
+  .get().then(
+      console.log(data)
+  )
+
+          
+
+        
+        //    console.log(this.workoutName)
+        
+    }
+    
 
 
 
@@ -193,7 +214,7 @@ export default {
                    
             //     })
             // })
-        }
+        
     }
 
 

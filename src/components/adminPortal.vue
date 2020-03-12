@@ -1,15 +1,16 @@
 <template>
-  <div  >
-     <b-form-group inline label="these buttons decied as to which workout you will be changing" class="top">
-      <b-form-radio v-model="selected" name="some-radios" value="1">workout position 1 </b-form-radio>
-      <b-form-radio v-model="selected" name="some-radios" value="2">workout position 2</b-form-radio>
-      <b-form-radio v-model="selected" name="some-radios" value="3">workout position 3</b-form-radio>
+  <div>
+     <div class="circuit-select">
+    <b-form-select @change="onChange($event)" v-model="selectedCircuit" :options="circuitOptions"></b-form-select>
+    <b-form-select @change="onChange($event)" v-model="selectedWorkout" :options="workoutOptions" size="sm" class="mt-3"></b-form-select>
+    <div class="mt-3">selectedCircuit: <strong>{{ selectedCircuit }}</strong></div>
+        <div class="mt-3">selectedWorkout: <strong>{{ selectedWorkout }}</strong></div>
 
-    </b-form-group>
+    </div>
 
     <!-- <h2>{{ allFiles[1].name }}</h2> -->
     <div class="upload-image mt-3">Selected: <strong>{{ selected }}</strong></div>
-        <p class=''>select 3 files for each workout </p>
+        <p class=''>select an image for each workout </p>
         <b-form-file
             @change="onFileSelected"
             input 
@@ -22,6 +23,14 @@
           drop-placeholder="Drop file here..."
       ></b-form-file>
 <div></div>
+<b-form-textarea
+      id="textarea"
+      class='workout-durration'
+      v-model="workoutName"
+      placeholder="CIRCUIT DISCRIPTION "
+      rows="3"
+      max-rows="6"
+    >{{text}}</b-form-textarea>
     <b-form-textarea
       id="textarea"
       class='workout-durration'
@@ -102,10 +111,35 @@ import {mapGetters, mapActions} from 'vuex'
         sets: '',
         description: '',
         workoutName:'',
-        timestamp: timestamp
+        timestamp: timestamp,
+        circuit: Number,
+        selectedCircuit: null,
+          circuitOptions: [
+            { value: null, text: 'Please select the circuit' },
+            { id: 1, value: 'circuit1', text: 'circuit 1' },
+            { id: 2, value: 'circuit2', text: 'circuit 2' },
+            { id: 3, value: 'circuit3', text: 'circuit 3' }
+              
+          ],
+        selectedWorkout: null,
+          workoutOptions: [
+            { value: null, text: 'Please select the workout' },
+            { id: 1, value: 'workout1', text: 'workout 1' },
+            { id: 2, value: 'workout2', text: 'workout 2' },
+            { id: 3, value: 'workout3', text: 'workout 3' }
+              
+          ]
+
+
+
+
       }
     },
     methods:{
+      onChange(e){
+       console.log(event.target.value)
+      },
+
       onFileSelected(e){
         const dateObj = new Date();
         const month = dateObj.getMonth() + 1; //months from 1-12
@@ -158,6 +192,12 @@ import {mapGetters, mapActions} from 'vuex'
         // })
       },
       updateWorkoutField(){
+        const dateObj = new Date();
+        const month = dateObj.getMonth() + 1; //months from 1-12
+        const day = dateObj.getDate();
+        const year = dateObj.getFullYear();
+        const newdate = year + "-" + month + "-" + day + '-';
+
         const workoutData = {
           rest: this.rest,
           seconds: this.seconds,
@@ -168,16 +208,36 @@ import {mapGetters, mapActions} from 'vuex'
           
         }
         console.log(workoutData)
-        this.db.collection('fitness-images').add({
-          rest: this.rest,
-          seconds: this.seconds,
-          sets:this.sets,
-          description: this.description,
-          workoutName:this.workoutName,
-          timestamp: this.timestamp
+        // this.db.collection('circuits').add({
+        //   rest: this.rest,
+        //   seconds: this.seconds,
+        //   sets:this.sets,
+        //   description: this.description,
+        //   workoutName:this.workoutName,
+        //   timestamp: this.timestamp,
+        //   createdAt: Date()
+        // })
 
-           
-        })
+     const write = this.db.collection(`circuits`).doc(`${newdate}-${this.selectedCircuit}`).set({
+        description: this.description,
+        timestamp: this.timestamp,
+        createdAt: Date()
+      }).then(
+
+      this.db.collection('circuits')
+      .doc(`${newdate}-${this.selectedCircuit}`)
+      .collection(`${this.selectedWorkout}`).add({
+        rest: this.rest,
+        seconds: this.seconds,
+        sets:this.sets,
+        description: this.description,
+        workoutName:this.workoutName,
+        timestamp: this.timestamp,
+        createdAt: Date()
+      })
+      )
+
+
       },
       ...mapActions(['addFile'])
       
@@ -212,6 +272,9 @@ div{
 }
 .linky {
   color: black;
+}
+.circuit-select{
+  padding-top: 100px;
 }
 @media screen and(max-width: 820px) {
   .upload-image{
