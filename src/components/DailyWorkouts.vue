@@ -22,7 +22,7 @@
             </div>
 
       <div 
-        v-for="(circuit, index) in circuitsProp"
+        v-for="(circuit, index) in retrievedData"
         :key="`circuit-${index}`"
         class="daily-circuit"
     >
@@ -67,7 +67,7 @@ const dateObj = new Date();
         const day = dateObj.getDate();
         const year = dateObj.getFullYear();
 
-        const todaysTimeStamp = year + "/" + month + "/" + day + '/';
+        const todaysTimeStamp = year + "-" + month + "-" + day + '-';
         console.log(todaysTimeStamp)
 
 export default {
@@ -80,6 +80,7 @@ export default {
             testImg: '',
             url: '',
             db: firebase.firestore(),
+            retrievedData: [],
             
             
         }
@@ -137,7 +138,7 @@ export default {
             const month = dateObj.getMonth() + 1; //months from 1-12
             const day = dateObj.getDate();
             const year = dateObj.getFullYear();
-            const newdate = year + "/" + month + "/" + day + '/';
+            const newdate = year + "-" + month + "-" + day + '-';
         
 
              const storage = firebase.storage();
@@ -158,7 +159,7 @@ export default {
             const month = dateObj.getMonth() + 1; //months from 1-12
             const day = dateObj.getDate();
             const year = dateObj.getFullYear();
-            const newdate = year + "/" + month + "/" + day + '/';
+            const newdate = year + "-" + month + "-" + day + '-';
 
             // const myTest = this.db.collection('circuits').doc(`${}`)
             //     .where('timestamp','==', todaysTimeStamp).snapshotChanges();
@@ -176,12 +177,37 @@ export default {
              
         //    }
         //    myTest();
+        // )
+        const circutsCollection = this.db.collection('circuits');
+        const workoutSubCollection = circutsCollection.doc(`${newdate}-circuit1`);
+        const workoutDoc = workoutSubCollection.collection('workout1').where('timestamp', '==', newdate)
+        
+            // workoutDoc.get().then((workouts) =>{
+            //     workouts.docs.forEach((workous) =>{
+            //         console.log(workouts.);
+            //     });
+            // });
 
-        this.db.collection('circuits')
-  .where('timestamp', '==', newdate)
-  .get().then(
-      console.log(data)
-  )
+            // this.db.collection('circuits').get().then((querySnapshot) =>{
+            //     querySnapshot.forEach((doc) =>{
+            //         console.log(doc.id, "=>", doc.data());
+            //         if (doc.data.timestamp == newdate) {
+            //             console.log('this workout is for today')
+            //         }
+            //     });
+            // });
+            this.db.collection("circuits")
+    .get()
+    .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            // doc.data() is never undefined for query doc snapshots
+            console.log(doc.data());
+            this.retrievedData = [ ...this.retrievedData, doc.data()]
+        });
+    })
+    .catch((error) => {
+        console.log("Error getting documents: ", error);
+    });
 
           
 

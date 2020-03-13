@@ -90,7 +90,7 @@ import {mapGetters, mapActions} from 'vuex'
         const day = dateObj.getDate();
         const year = dateObj.getFullYear();
 
-        const timestamp = year + "/" + month + "/" + day + '/';
+        const timestamp = year + "-" + month + "-" + day + '-';
 
 
   export default {
@@ -146,7 +146,7 @@ import {mapGetters, mapActions} from 'vuex'
         const day = dateObj.getDate();
         const year = dateObj.getFullYear();
 
-        const newdate = year + "/" + month + "/" + day + '/';
+        const newdate = year + "-" + month + "-" + day + '-';
         this.timestamp =newdate
        console.log(newdate)
         this.file = e.target.files[0];
@@ -169,7 +169,7 @@ import {mapGetters, mapActions} from 'vuex'
         const day = dateObj.getDate();
         const year = dateObj.getFullYear();
 
-        const newdate = year + "/" + month + "/" + day + '/';
+        const newdate = year + "-" + month + "-" + day + '-';
         //   let image = e.target.files[0]
 
         var imageRef = firebase.storage().ref(`${newdate}${this.file[0].name}`).getDownloadURL()
