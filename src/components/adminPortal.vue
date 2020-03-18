@@ -71,7 +71,7 @@
       rows="3"
       max-rows="6"
     >{{text}}</b-form-textarea>
-<button v-on:click="updateWorkoutField">console.log workout field</button>
+<button v-on:click="update">console.log workout field</button>
 <router-link class="linky" to="/todays-workout">Admin here</router-link>
   
 <b-button class="submit" v-on:click="showfile">upload image</b-button> 
@@ -218,24 +218,59 @@ import {mapGetters, mapActions} from 'vuex'
         //   createdAt: Date()
         // })
 
-     const write = this.db.collection(`circuits`).doc(`${newdate}-${this.selectedCircuit}`).set({
-        description: this.description,
-        timestamp: this.timestamp,
-        createdAt: Date()
-      }).then(
+    //  const write = this.db.collection(`circuits`).doc(`${newdate}-${this.selectedCircuit}`).set({
+    //     description: this.description,
+    //     timestamp: this.timestamp,
+    //     createdAt: Date()
+    //   }).then(
 
-      this.db.collection('circuits')
-      .doc(`${newdate}-${this.selectedCircuit}`)
-      .collection(`${this.selectedWorkout}`).add({
-        rest: this.rest,
-        seconds: this.seconds,
-        sets:this.sets,
-        description: this.description,
-        workoutName:this.workoutName,
-        timestamp: this.timestamp,
-        createdAt: Date()
-      })
-      )
+    //   this.db.collection('circuits')
+    //   .doc(`${newdate}-${this.selectedCircuit}`)
+    //   .collection(`${this.selectedWorkout}`).add({
+    //     rest: this.rest,
+    //     seconds: this.seconds,
+    //     sets:this.sets,
+    //     description: this.description,
+    //     workoutName:this.workoutName,
+    //     timestamp: this.timestamp,
+    //     createdAt: Date()
+    //   })
+    //   )
+    const selectedCircuitOption = this.selectedCircuit;
+    const write = this.db.collection(`circuits`).doc(`${newdate}-${this.selectedCircuit}`).add({
+     selectedCircuitOption : 
+     [{workoutName: `${this.workoutName}`,
+     sets: `${this.sets}`,
+     seconds: `${this.seconds}`,
+     rests: `${this.rests}`,
+     timestamp: `${this.timestamp}`,
+     createdAt: `${this.createdAt}`,
+     description: `${this.description}`,
+     createdAt: Date()
+      }]
+    })
+
+
+      },update(){
+         const dateObj = new Date();
+        const month = dateObj.getMonth() + 1; //months from 1-12
+        const day = dateObj.getDate();
+        const year = dateObj.getFullYear();
+        const newdate = year + "-" + month + "-" + day + '-';
+          const selectedCircuitOption = this.selectedCircuit;
+          const updateArray = this.db.collection(`test-circuit`).doc(`${newdate}-${this.selectedCircuit}`)
+          .set({
+            selectedCircuitOption : 
+     [{workoutName: `${this.workoutName}`,
+     sets: `${this.sets}`,
+     seconds:`${this.seconds}`,
+     rests:`${this.rests}`,
+     timestamp:`${this.timestamp}`,
+     createdAt:`${this.createdAt}`,
+     description:`${this.description}`,
+     createdAt:Date()
+      }]
+          },{merge: true})
 
 
       },
