@@ -28,24 +28,24 @@
     >
     
         <b-card class="circuit-info">
-            <h1>{{ retrievedData.name }}</h1>
+            <h1>{{ retrievedData[2]}}</h1>
             <p>{{ circuit.desc }}</p>
         </b-card>
 
         <b-card class="workouts">
             <b-row no-gutters>
                 <b-col
-                    v-for="(workout, index2) in `${test-circuit}`"
+                    v-for="(workout, index2) in `${circuits}`"
                     :key="`workout-${index2}`"
                     md="4"
                 >
-                    <img class="workout-gif" :src="workout.img">
+                    <img class="workout-gif" :src="workout.url">
                     
                     <div class="workout-name">
                         <span>{{ index2 + 1 }}</span>
                         <h3>{{ workout.workoutName }}</h3>
                     </div>
-                    <p><span class="bolded">{{workout.sets}}</span> sets - <span class="bolded">{{workout.seconds}}</span> seconds - <span class="bolded">{{workout.rest}}s</span> rest</p>
+                    <p><span class="bolded">{{workout.sets}}</span> sets - <span class="bolded">{{workout.seconds}}</span> seconds - <span class="bolded">{{workout.rests}}</span> rest</p>
                 </b-col>
             </b-row>
         </b-card>
@@ -166,7 +166,7 @@ export default {
         const workoutSubCollection = circutsCollection.doc(`${newdate}-circuit1`);
         const workoutDoc = workoutSubCollection.collection('workout1').where('timestamp', '==', newdate)
         
-            this.db.collection("test-circuit")
+            this.db.collection("circuits")
             .get()
             .then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
