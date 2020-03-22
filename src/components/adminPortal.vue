@@ -2,35 +2,41 @@
   <div>
      <div class="circuit-select">
     <b-form-select @change="onChange($event)" v-model="selectedCircuit" :options="circuitOptions"></b-form-select>
-    <b-form-select @change="onChange($event)" v-model="selectedWorkout" :options="workoutOptions" size="sm" class="mt-3"></b-form-select>
     <div class="mt-3">selectedCircuit: <strong>{{ selectedCircuit }}</strong></div>
-        <div class="mt-3">selectedWorkout: <strong>{{ selectedWorkout }}</strong></div>
 
     </div>
 
     <!-- <h2>{{ allFiles[1].name }}</h2> -->
-    <div class="upload-image mt-3">Selected: <strong>{{ selected }}</strong></div>
+    <div class="upload-image mt-3"></div>
         <p class=''>select an image for each workout </p>
-        <b-form-file
+        
+<div></div>
+<p>circuit description</p>
+<b-col lg="6">
+<b-form-textarea
+
+      id="textarea"
+      class='workout-durration'
+      v-model="circuitDescription"
+      placeholder="CIRCUIT DISCRIPTION "
+      rows="4"
+      
+      max-rows="6"
+      
+    >{{text}}</b-form-textarea>
+    </b-col>
+
+    <p>workout1</p> <b-form-file
             @change="onFileSelected"
             input 
             v-bind:multiple="true"
             type="file"
             class='upload'
-            v-model="file"
+            v-model="workoutImgUrl"
             :state="Boolean(file)"
           placeholder="Choose a file or drop it here..."
           drop-placeholder="Drop file here..."
       ></b-form-file>
-<div></div>
-<b-form-textarea
-      id="textarea"
-      class='workout-durration'
-      v-model="workoutName"
-      placeholder="CIRCUIT DISCRIPTION "
-      rows="3"
-      max-rows="6"
-    >{{text}}</b-form-textarea>
     <b-form-textarea
       id="textarea"
       class='workout-durration'
@@ -71,11 +77,119 @@
       rows="3"
       max-rows="6"
     >{{text}}</b-form-textarea>
+
+    <p>workout2</p> <b-form-file
+            @change="onFileSelected"
+            input 
+            v-bind:multiple="true"
+            type="file"
+            class='upload'
+            v-model="workoutImgUrl1"
+            :state="Boolean(file)"
+          placeholder="Choose a file or drop it here..."
+          drop-placeholder="Drop file here..."
+      ></b-form-file>
+    <b-form-textarea
+      id="textarea"
+      class='workout-durration'
+      v-model="workoutName1"
+      placeholder="workout name "
+      rows="3"
+      max-rows="6"
+    >{{text}}</b-form-textarea>
+     <b-form-textarea
+      id="textarea"
+      class='workout-durration'
+      v-model="description1"
+      placeholder="workout description "
+      rows="3"
+      max-rows="6"
+    >{{text}}</b-form-textarea>
+     <b-form-textarea
+      id="textarea"
+      class='workout-durration'
+      v-model="sets1"
+      placeholder="workout-sets "
+      rows="3"
+      max-rows="6"
+    >{{text}}</b-form-textarea>
+     <b-form-textarea
+      id="textarea"
+      class='workout-durration'
+      v-model="seconds1"
+      placeholder="workout-seconds "
+      rows="3"
+      max-rows="6"
+    >{{text}}</b-form-textarea>
+     <b-form-textarea
+      id="textarea"
+      class='workout-durration'
+      v-model="rest1"
+      placeholder="workout-rest durration "
+      rows="3"
+      max-rows="6"
+    >{{text}}</b-form-textarea>
+
+    <p>workout3</p>
+     <b-form-file
+            @change="onFileSelected"
+            input 
+            v-bind:multiple="true"
+            type="file"
+            class='upload'
+            v-model="workoutImgUrl2"
+            :state="Boolean(file)"
+          placeholder="Choose a file or drop it here..."
+          drop-placeholder="Drop file here..."
+      ></b-form-file>
+    <b-form-textarea
+      id="textarea"
+      class='workout-durration'
+      v-model="workoutName2"
+      placeholder="workout name "
+      rows="3"
+      max-rows="6"
+    >{{text}}</b-form-textarea>
+     <b-form-textarea
+      id="textarea"
+      class='workout-durration'
+      v-model="description2"
+      placeholder="workout description "
+      rows="3"
+      max-rows="6"
+    >{{text}}</b-form-textarea>
+     <b-form-textarea
+      id="textarea"
+      class='workout-durration'
+      v-model="sets2"
+      placeholder="workout-sets "
+      rows="3"
+      max-rows="6"
+    >{{text}}</b-form-textarea>
+     <b-form-textarea
+      id="textarea"
+      class='workout-durration'
+      v-model="seconds2"
+      placeholder="workout-seconds "
+      rows="3"
+      max-rows="6"
+    >{{text}}</b-form-textarea>
+     <b-form-textarea
+      id="textarea"
+      class='workout-durration'
+      v-model="rest2"
+      placeholder="workout-rest durration "
+      rows="3"
+      max-rows="6"
+    >{{text}}</b-form-textarea>
+    
 <button v-on:click="update">console.log workout field</button>
 <router-link class="linky" to="/todays-workout">Admin here</router-link>
   
 <b-button class="submit" v-on:click="showfile">upload image</b-button> 
-    <img :v-if="this.imgToShow ==! ''" :src="this.imgToShow" alt=""> 
+    <img :v-if="this.workoutImgUrl
+     ==! ''" :src="this.workoutImgUrl
+    " alt=""> 
     </div>
 </template>
 
@@ -102,15 +216,28 @@ import {mapGetters, mapActions} from 'vuex'
         file2: null,
         // position: null,
         selected: null,
-        text: 'hi',
-        imgToShow: '',
+        text: '',
+        workoutImgUrl: '',
+        workoutImgUrl1: '',
+        workoutImgUrl2: '',
         sendImg: '',
         db: firebase.firestore(),
+        circuitDescription: '',
         rest: '',
         seconds: '',
         sets: '',
         description: '',
         workoutName:'',
+        rest1: '',
+        seconds1: '',
+        sets1: '',
+        description1: '',
+        workoutName1:'',
+        rest2: '',
+        seconds2: '',
+        sets2: '',
+        description2: '',
+        workoutName2:'',
         timestamp: timestamp,
         circuit: Number,
         selectedCircuit: null,
@@ -126,7 +253,15 @@ import {mapGetters, mapActions} from 'vuex'
             { value: null, text: 'Please select the workout' },
             { id: 1, value: 'workout1', text: 'workout 1' },
             { id: 2, value: 'workout2', text: 'workout 2' },
-            { id: 3, value: 'workout3', text: 'workout 3' }
+            { id: 3, value: 'workout3', text: 'workout 3' },
+            { id: 4, value: 'workout4', text: 'workout 4' },
+            { id: 5, value: 'workout5', text: 'workout 5' },
+            { id: 6, value: 'workout6', text: 'workout 6' },
+            { id: 7, value: 'workout7', text: 'workout 7' },
+            { id: 8, value: 'workout8', text: 'workout 8' },
+            { id: 9, value: 'workout9', text: 'workout 9' },
+
+
               
           ]
 
@@ -172,10 +307,10 @@ import {mapGetters, mapActions} from 'vuex'
         const newdate = year + "-" + month + "-" + day + '-';
         //   let image = e.target.files[0]
 
-        var imageRef = firebase.storage().ref(`${newdate}${this.file[0].name}`).getDownloadURL()
+        var imageRef = firebase.storage().ref(`${newdate}${this.workoutImgUrl[0].name}`).getDownloadURL()
         // imageRef.getDownloadURL()
         .then((url) => {
-          this.imgToShow = url
+          this.workoutImgUrl = url
 
         }).catch((error) => {
           console.log(error)
@@ -256,21 +391,36 @@ import {mapGetters, mapActions} from 'vuex'
         const month = dateObj.getMonth() + 1; //months from 1-12
         const day = dateObj.getDate();
         const year = dateObj.getFullYear();
-        const newdate = year + "-" + month + "-" + day + '-';
-          const selectedCircuitOption = this.selectedCircuit;
-          const updateArray = this.db.collection(`test-circuit`).doc(`${newdate}-${this.selectedCircuit}`)
-          .set({
-            selectedCircuitOption : 
+        const newdate = year + "-" + month + "-" + day;
+          const newCircuit = this.db.collection(`circuits`).doc(`${newdate}-${this.selectedCircuit}`)
+          .set({"timestamp":newdate ,"circuitDescription":`${this.circuitDescription}`,workout:
      [{workoutName: `${this.workoutName}`,
      sets: `${this.sets}`,
      seconds:`${this.seconds}`,
-     rests:`${this.rests}`,
-     timestamp:`${this.timestamp}`,
-     createdAt:`${this.createdAt}`,
+     rests:`${this.rest}`,
      description:`${this.description}`,
-     createdAt:Date()
-      }]
-          },{merge: true})
+     createdAt:Date(),
+     url: `${this.workoutImgUrl[0].name}`,
+
+      },
+      {workoutName: `${this.workoutName}`,
+     sets: `${this.sets1}`,
+     seconds:`${this.seconds1}`,
+     rests:`${this.rest1}`,     
+     description:`${this.description1}`,
+     createdAt:Date(),
+     url: `${this.workoutImgUrl1[0].name}`,
+      },
+      {workoutName: `${this.workoutName2}`,
+     sets: `${this.sets2}`,
+     seconds:`${this.seconds2}`,
+     rests:`${this.rest2}`,     
+     description:`${this.description2}`,
+     createdAt:Date(),
+     url: `${this.workoutImgUrl2[0].name}`,
+      }
+      
+        ]   },{merge:true} )
 
 
       },

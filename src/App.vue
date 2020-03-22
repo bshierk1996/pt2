@@ -74,7 +74,8 @@ export default {
 }
 body{
   font-family: Arial, Helvetica, sans-serif;
-  line-height: 1.4
+  line-height: 1.4;
+   background-color: #fff;
 }
 
 @media screen and (max-width: 800px) {

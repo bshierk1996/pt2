@@ -28,14 +28,14 @@
     >
     
         <b-card class="circuit-info">
-            <h1>{{ circuit.name }}</h1>
+            <h1>{{ retrievedData.name }}</h1>
             <p>{{ circuit.desc }}</p>
         </b-card>
 
         <b-card class="workouts">
             <b-row no-gutters>
                 <b-col
-                    v-for="(workout, index2) in circuit.workouts"
+                    v-for="(workout, index2) in `${test-circuit}`"
                     :key="`workout-${index2}`"
                     md="4"
                 >
@@ -135,7 +135,7 @@ export default {
 
         downloadURL(){
             const dateObj = new Date();
-            const month = dateObj.getMonth() + 1; //months from 1-12
+            const month = dateObj.getMonth() + 1; 
             const day = dateObj.getDate();
             const year = dateObj.getFullYear();
             const newdate = year + "-" + month + "-" + day + '-';
@@ -155,59 +155,28 @@ export default {
             })
         },
         displayWorkout(){
-             const dateObj = new Date();
+            const dateObj = new Date();
             const month = dateObj.getMonth() + 1; //months from 1-12
             const day = dateObj.getDate();
             const year = dateObj.getFullYear();
             const newdate = year + "-" + month + "-" + day + '-';
 
-            // const myTest = this.db.collection('circuits').doc(`${}`)
-            //     .where('timestamp','==', todaysTimeStamp).snapshotChanges();
-            //     // .orderBy('createdAt').
            
-        //    const myTest = async () => {
-              
-        //       const collection = this.db.collection('circuits').where('timestamp', '==', newdate).get().then((querySnapshot)=>{
-        //         querySnapshot.docs.forEach(doc =>{
-        //             myTest(doc);
-        //         })
-        //       })
-             
-        //           console.log(doc.workoutName)
-             
-        //    }
-        //    myTest();
-        // )
         const circutsCollection = this.db.collection('circuits');
         const workoutSubCollection = circutsCollection.doc(`${newdate}-circuit1`);
         const workoutDoc = workoutSubCollection.collection('workout1').where('timestamp', '==', newdate)
         
-            // workoutDoc.get().then((workouts) =>{
-            //     workouts.docs.forEach((workous) =>{
-            //         console.log(workouts.);
-            //     });
-            // });
-
-            // this.db.collection('circuits').get().then((querySnapshot) =>{
-            //     querySnapshot.forEach((doc) =>{
-            //         console.log(doc.id, "=>", doc.data());
-            //         if (doc.data.timestamp == newdate) {
-            //             console.log('this workout is for today')
-            //         }
-            //     });
-            // });
-            this.db.collection("circuits")
-    .get()
-    .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-            // doc.data() is never undefined for query doc snapshots
-            console.log(doc.data());
-            this.retrievedData = [ ...this.retrievedData, doc.data()]
-        });
-    })
-    .catch((error) => {
-        console.log("Error getting documents: ", error);
-    });
+            this.db.collection("test-circuit")
+            .get()
+            .then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                console.log(doc.data());
+                this.retrievedData = [ ...this.retrievedData, doc.data()]
+            });
+            })
+            .catch((error) => {
+            console.log("Error getting documents: ", error);
+             });
 
           
 
