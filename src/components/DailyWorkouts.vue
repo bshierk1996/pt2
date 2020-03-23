@@ -28,14 +28,14 @@
     >
     
         <b-card class="circuit-info">
-            <h1>{{ retrievedData[2]}}</h1>
+            <h1>{{ circuit.circuitDescription }}</h1>
             <p>{{ circuit.desc }}</p>
         </b-card>
 
         <b-card class="workouts">
             <b-row no-gutters>
                 <b-col
-                    v-for="(workout, index2) in `${circuits}`"
+                    v-for="(workout, index2) in circuit.workout"
                     :key="`workout-${index2}`"
                     md="4"
                 >
@@ -162,14 +162,15 @@ export default {
             const newdate = year + "-" + month + "-" + day + '-';
 
            
-        const circutsCollection = this.db.collection('circuits');
-        const workoutSubCollection = circutsCollection.doc(`${newdate}-circuit1`);
-        const workoutDoc = workoutSubCollection.collection('workout1').where('timestamp', '==', newdate)
-        
+            const circutsCollection = this.db.collection('circuits');
+            const workoutSubCollection = circutsCollection.doc(`${newdate}-circuit1`);
+            const workoutDoc = workoutSubCollection.collection('workout1').where('timestamp', '==', newdate)
+            
             this.db.collection("circuits")
             .get()
             .then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
+                console.log('retrieving')
                 console.log(doc.data());
                 this.retrievedData = [ ...this.retrievedData, doc.data()]
             });
@@ -178,37 +179,9 @@ export default {
             console.log("Error getting documents: ", error);
              });
 
-          
-
-        
-        //    console.log(this.workoutName)
-        
     }
-    
-
-
-
-
-
-
-        
-            
+       
         }
-
-            // this.allFiles.map(item => {
-            //     const storage = firebase.storage();
-            //     const pathReference = storage.ref(this.allFiles.name);
-
-            //     const imgref = pathReference.child(item.name);
-            //     imgref.getDownloadURL().then((url) => {
-            //         console.log('URL: ')
-            //         console.log(url)
-            //        this.receivedImgs = [ ...this.receivedImgs, url ]
-            //         var storageRef = firebase.storage().ref(`${newdate}`);
-            //         console.log(newdate)
-                   
-            //     })
-            // })
         
     }
 
