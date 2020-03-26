@@ -165,6 +165,10 @@ export default {
             .catch((error) => {
             console.log("Error getting documents: ", error);
              });
+<<<<<<< HEAD
+=======
+
+>>>>>>> 05b59c286169428a8fcb17e1729e211501017032
     }
        
         }
