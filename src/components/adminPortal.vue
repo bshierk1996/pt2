@@ -198,18 +198,13 @@ import firebase, { storage } from 'firebase';
 import {mapGetters, mapActions} from 'vuex'
 // import {mapState} from 'vuex'
 //import fbConfig from './App.vue';
-
         const dateObj = new Date();
         const month = dateObj.getMonth() + 1; //months from 1-12
         const day = dateObj.getDate();
         const year = dateObj.getFullYear();
-
         const timestamp = year + "-" + month + "-" + day + '-';
-
-
   export default {
     name: 'admin',
-
     data() {
       return {
         file: {},
@@ -260,27 +255,19 @@ import {mapGetters, mapActions} from 'vuex'
             { id: 7, value: 'workout7', text: 'workout 7' },
             { id: 8, value: 'workout8', text: 'workout 8' },
             { id: 9, value: 'workout9', text: 'workout 9' },
-
-
               
           ]
-
-
-
-
       }
     },
     methods:{
       onChange(e){
        console.log(event.target.value)
       },
-
       onFileSelected(e){
         const dateObj = new Date();
         const month = dateObj.getMonth() + 1; //months from 1-12
         const day = dateObj.getDate();
         const year = dateObj.getFullYear();
-
         const newdate = year + "-" + month + "-" + day + '-';
         this.timestamp =newdate
        console.log(newdate)
@@ -288,10 +275,8 @@ import {mapGetters, mapActions} from 'vuex'
         this.addFile(this.file)
           // console.log('this file is currently being shown')
          var storageRef = firebase.storage().ref(`${newdate}${this.file.name}`)
-
         let uploadFile = storageRef.put(this.file)
         
-
         setTimeout(() => {
           console.log(this.allFiles)
         }, 1200)
@@ -303,18 +288,14 @@ import {mapGetters, mapActions} from 'vuex'
         const month = dateObj.getMonth() + 1; //months from 1-12
         const day = dateObj.getDate();
         const year = dateObj.getFullYear();
-
         const newdate = year + "-" + month + "-" + day + '-';
         //   let image = e.target.files[0]
-
         var imageRef = firebase.storage().ref(`${newdate}${this.workoutImgUrl[0].name}`).getDownloadURL()
         // imageRef.getDownloadURL()
         .then((url) => {
           this.workoutImgUrl = url
-
         }).catch((error) => {
           console.log(error)
-
          })
         //  this.allFiles.map(item =>{ 
         //   const storage = firebase.storage();
@@ -332,7 +313,6 @@ import {mapGetters, mapActions} from 'vuex'
         const day = dateObj.getDate();
         const year = dateObj.getFullYear();
         const newdate = year + "-" + month + "-" + day + '-';
-
         const workoutData = {
           rest: this.rest,
           seconds: this.seconds,
@@ -352,13 +332,11 @@ import {mapGetters, mapActions} from 'vuex'
         //   timestamp: this.timestamp,
         //   createdAt: Date()
         // })
-
     //  const write = this.db.collection(`circuits`).doc(`${newdate}-${this.selectedCircuit}`).set({
     //     description: this.description,
     //     timestamp: this.timestamp,
     //     createdAt: Date()
     //   }).then(
-
     //   this.db.collection('circuits')
     //   .doc(`${newdate}-${this.selectedCircuit}`)
     //   .collection(`${this.selectedWorkout}`).add({
@@ -384,8 +362,6 @@ import {mapGetters, mapActions} from 'vuex'
      createdAt: Date()
       }]
     })
-
-
       },update(){
          const dateObj = new Date();
         const month = dateObj.getMonth() + 1; //months from 1-12
@@ -401,7 +377,6 @@ import {mapGetters, mapActions} from 'vuex'
      description:`${this.description}`,
      createdAt:Date(),
      url: `${this.workoutImgUrl[0].name}`,
-
       },
       {workoutName: `${this.workoutName}`,
      sets: `${this.sets1}`,
@@ -421,8 +396,6 @@ import {mapGetters, mapActions} from 'vuex'
       }
       
         ]   },{merge:true} )
-
-
       },
       ...mapActions(['addFile'])
       

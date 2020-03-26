@@ -2,7 +2,7 @@
   
 <div class="mobile-nav-row" >
 <b-navbar toggleable="lg" >
-      <router-link to="/"> <img src="../assets/KVF_logo.svg" alt="img" class="logo-img"></router-link>
+      <router-link to="/"> <img src="../assets/KVF_logo2.svg" alt="img" class="logo-img"></router-link>
 
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
@@ -70,7 +70,7 @@ li {
   z-index: 200;
   position: fixed;
   width: 100%;
-  background: #f5f5f5;
+  background-image:linear-gradient(to right,#94f215,#fa58a3) ;
   box-shadow: 0px 5px 5px 0 rgba(0, 0, 0, 0.2);
   max-height: 75px;
   /* margin-top: -50px; */
@@ -96,14 +96,14 @@ li {
 
 .butts{
   margin-left: 20px;
-  background-color: #f5f5f5;
+  background-color: transparent;
   color: #A2D618
 
 }
 a{
   color: #A2D618;
-  background-color: #f5f5f5;
-  border-color:#f5f5f5;
+  background-color: transparent;
+  border-color:transparent;
 
 }
 

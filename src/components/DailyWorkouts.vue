@@ -8,7 +8,6 @@
             <div v-if="sendImg ==! '' "  class="urls">
                 <img :src="sendImg" alt="">
             </div>
-
            <h1 class="workout-title"></h1>
         </div> -->
         <button @click="fbGet">fbget</button>
@@ -28,14 +27,14 @@
     >
     
         <b-card class="circuit-info">
-            <h1>{{ retrievedData[2]}}</h1>
+            <h1>{{ circuit.circuitDescription }}</h1>
             <p>{{ circuit.desc }}</p>
         </b-card>
 
         <b-card class="workouts">
             <b-row no-gutters>
                 <b-col
-                    v-for="(workout, index2) in `${circuits}`"
+                    v-for="(workout, index2) in circuit.workout"
                     :key="`workout-${index2}`"
                     md="4"
                 >
@@ -66,10 +65,8 @@ const dateObj = new Date();
         const month = dateObj.getMonth() + 1; //months from 1-12
         const day = dateObj.getDate();
         const year = dateObj.getFullYear();
-
         const todaysTimeStamp = year + "-" + month + "-" + day + '-';
         console.log(todaysTimeStamp)
-
 export default {
     //  computed: mapGetters(['sendImg']),
     props: ['circuitsProp', 'title'],
@@ -91,7 +88,6 @@ export default {
         }, 1500)
         this.fbGet()
         // this.downloadURL()
-
     },
     computed: {
          ...mapGetters(['allFiles']),
@@ -106,11 +102,7 @@ export default {
             
           const  fbstorage = firebase.storage()
           const storageRef = fbstorage.ref()
-
-
-
              const listRef = storageRef.child(newdate)
-
             //  const pathReference = storage.ref(newdate);
             listRef.listAll().then((res) => {
                 console.log('top level')
@@ -131,8 +123,6 @@ export default {
                 console.log(error)
             });
         },
-
-
         downloadURL(){
             const dateObj = new Date();
             const month = dateObj.getMonth() + 1; 
@@ -140,10 +130,8 @@ export default {
             const year = dateObj.getFullYear();
             const newdate = year + "-" + month + "-" + day + '-';
         
-
              const storage = firebase.storage();
              const pathReference = storage.ref(this.allFiles.name)
-
             this.allFiles.map(item => {
                 const storage = firebase.storage();
                 const pathReference = storage.ref(this.allFiles.name);
@@ -160,16 +148,16 @@ export default {
             const day = dateObj.getDate();
             const year = dateObj.getFullYear();
             const newdate = year + "-" + month + "-" + day + '-';
-
            
-        const circutsCollection = this.db.collection('circuits');
-        const workoutSubCollection = circutsCollection.doc(`${newdate}-circuit1`);
-        const workoutDoc = workoutSubCollection.collection('workout1').where('timestamp', '==', newdate)
-        
+            const circutsCollection = this.db.collection('circuits');
+            const workoutSubCollection = circutsCollection.doc(`${newdate}-circuit1`);
+            const workoutDoc = workoutSubCollection.collection('workout1').where('timestamp', '==', newdate)
+            
             this.db.collection("circuits")
             .get()
             .then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
+                console.log('retrieving')
                 console.log(doc.data());
                 this.retrievedData = [ ...this.retrievedData, doc.data()]
             });
@@ -177,44 +165,11 @@ export default {
             .catch((error) => {
             console.log("Error getting documents: ", error);
              });
-
-          
-
-        
-        //    console.log(this.workoutName)
-        
     }
-    
-
-
-
-
-
-
-        
-            
+       
         }
-
-            // this.allFiles.map(item => {
-            //     const storage = firebase.storage();
-            //     const pathReference = storage.ref(this.allFiles.name);
-
-            //     const imgref = pathReference.child(item.name);
-            //     imgref.getDownloadURL().then((url) => {
-            //         console.log('URL: ')
-            //         console.log(url)
-            //        this.receivedImgs = [ ...this.receivedImgs, url ]
-            //         var storageRef = firebase.storage().ref(`${newdate}`);
-            //         console.log(newdate)
-                   
-            //     })
-            // })
         
     }
-
-
-
-
 </script>
 
 <style>
@@ -225,48 +180,39 @@ body {
     margin: 0 50px;
     padding-top: 100px;
 }
-
 .daily-circuit {
     margin-bottom: 20px;
 }
-
 .workouts {
     border-radius: 0;
     text-align: center;
 }
-
 .bolded {
     font-weight: 600;
 }
-
 .workout-title {
     margin-bottom: 40px;
 }
-
 .circuit-info {
     border-bottom: 5px solid #A2D618;
     border-radius: 0px;
     margin-bottom: 10px;
 }
-
 .workout-gif {
     margin-bottom: 20px;
 }
-
 .workout-name {
     display: flex;
     align-items: center;
     margin-bottom: 15px;
     justify-content: center;
 }
-
 .workout-name span {
     font-size: 20px;
     padding: 0 10px;
     margin-right: 15px;
     background: #A2D618;
 }
-
 .workout-name h3 {
     margin-bottom: 0;
 }
