@@ -47,6 +47,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 @import url('https://fonts.googleapis.com/css?family=Montserrat:900i&display=swap');
+
 .mobile-nav-row{
   font-family: 'Montserrat', sans-serif;
 }

@@ -36,9 +36,9 @@
 </script>
 <style scoped>
 @import url('https://fonts.googleapis.com/css?family=Montserrat:900i&display=swap');
-
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 div{
-background-image: url('../assets/circle.svg');
+/* background-image: url('../assets/circle.svg'); */
 height: 100vh;
 background-repeat: no-repeat;
 background-position: center;
@@ -55,13 +55,15 @@ overflow: hidden;
 .todaysWorkout{
 padding-top: 120px;
 text-align: center;
+font-family: 'Montserrat', sans-serif;
+
 
 }
 .workoutNameText{
 text-align: center;
 color: #94f215;
 font-family: 'Montserrat', sans-serif;
-
+font-style: italic;
    
 }
 .buttons{
@@ -72,6 +74,8 @@ font-family: 'Montserrat', sans-serif;
    border-color: #94f215;
    font-family: 'Montserrat', sans-serif;
    font-size: 12px;
+   font-weight: 900;
+   font-style: italic;
 
 
 }

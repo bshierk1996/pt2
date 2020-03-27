@@ -86,6 +86,10 @@ body{
   @media screen and (max-width: 799px) {
   .mobile-nav-row {
     display: contents;
+      box-shadow: 0px 5px 5px 0 rgba(0, 0, 0, 0.2);
+        background-image:linear-gradient(to right,#94f215,#fa58a3) ;
+
+
   }
 
 }

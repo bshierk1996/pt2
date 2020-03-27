@@ -9,16 +9,15 @@
           <label for="validationDefault01">First name</label>
           <input type="text" class="form-control firstname"  value="" required placeholder="firstname" v-model="firstName" />
         </div>
-        <div class="col-md-3 mb-2">
+        <div class="col-md-4 mb-3">
           <label >Last name</label>
           <input type="text" class="form-control lastname"  value="" required placeholder="lastname"  v-model="lastName" /> 
         </div>
-       
-        <div class="col-md-3 mb-3">
+        
+        <div class="col-md-4 mb-3">
           <label >Email Address</label>
           <input type="text" class="form-control email"  value="" required placeholder="Email Address" v-model="email" />
         </div>
-        
         </div>
         <div class="col-md-4 mb-3">
           <label >Password</label>
