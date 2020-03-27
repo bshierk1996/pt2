@@ -38,7 +38,7 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:900i&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 div{
-/* background-image: url('../assets/circle.svg'); */
+background-image: url('../assets/circle.svg'); 
 height: 100vh;
 background-repeat: no-repeat;
 background-position: center;

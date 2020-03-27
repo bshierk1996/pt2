@@ -18,7 +18,6 @@ import DailyWorkouts from './components/DailyWorkouts'
 import { todayProps, yesterdayProps } from './propsconfig'
 import viewUsers from './components/viewUsers'
 import pricingView from './components/pricingView'
-import content from './components/content'
 import mobile from './components/mobileNav'
 import dashBoard from './components/dashboard'
 import admin from './components/adminPortal'
@@ -53,7 +52,6 @@ const router = new VueRouter({
     {path: '/login', component: login},
     {path: '/viewUsers', component: viewUsers},
     {path: '/pricing', component: pricingView},
-    {path: '/content', component: content},
     {path: '/nav', component: mobile},
     {path: '/dashboard', component: dashBoard},
     {path: '/admin',name:'admin', component: admin,  },
