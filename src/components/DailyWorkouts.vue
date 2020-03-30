@@ -11,9 +11,13 @@
         </div> -->
 
     <h1 class="workout-title"></h1>
+
             <div v-for="(url, index) in receivedImgs" :key="`${index}`">
+
+            
+
                 <img :src="url" alt="">
-            </div>
+            </div> -->
 
       <div 
         v-for="(circuit, index) in retrievedData"
