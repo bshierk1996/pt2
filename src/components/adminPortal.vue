@@ -307,69 +307,14 @@ import {mapGetters, mapActions} from 'vuex'
         //   })
         // })
       },
-      updateWorkoutField(){
-        const dateObj = new Date();
-        const month = dateObj.getMonth() + 1; //months from 1-12
-        const day = dateObj.getDate();
-        const year = dateObj.getFullYear();
-        const newdate = year + "-" + month + "-" + day + '-';
-        const workoutData = {
-          rest: this.rest,
-          seconds: this.seconds,
-          sets:this.sets,
-          description: this.description,
-          workoutName:this.workoutName,
-          timestamp:this.timestamp
-          
-        }
-        console.log(workoutData)
-        // this.db.collection('circuits').add({
-        //   rest: this.rest,
-        //   seconds: this.seconds,
-        //   sets:this.sets,
-        //   description: this.description,
-        //   workoutName:this.workoutName,
-        //   timestamp: this.timestamp,
-        //   createdAt: Date()
-        // })
-    //  const write = this.db.collection(`circuits`).doc(`${newdate}-${this.selectedCircuit}`).set({
-    //     description: this.description,
-    //     timestamp: this.timestamp,
-    //     createdAt: Date()
-    //   }).then(
-    //   this.db.collection('circuits')
-    //   .doc(`${newdate}-${this.selectedCircuit}`)
-    //   .collection(`${this.selectedWorkout}`).add({
-    //     rest: this.rest,
-    //     seconds: this.seconds,
-    //     sets:this.sets,
-    //     description: this.description,
-    //     workoutName:this.workoutName,
-    //     timestamp: this.timestamp,
-    //     createdAt: Date()
-    //   })
-    //   )
-    const selectedCircuitOption = this.selectedCircuit;
-    const write = this.db.collection(`circuits`).doc(`${newdate}-${this.selectedCircuit}`).add({
-     selectedCircuitOption : 
-     [{workoutName: `${this.workoutName}`,
-     sets: `${this.sets}`,
-     seconds: `${this.seconds}`,
-     rests: `${this.rests}`,
-     timestamp: `${this.timestamp}`,
-     createdAt: `${this.createdAt}`,
-     description: `${this.description}`,
-     createdAt: Date()
-      }]
-    })
-      },update(){
+      update(){
          const dateObj = new Date();
         const month = dateObj.getMonth() + 1; //months from 1-12
         const day = dateObj.getDate();
         const year = dateObj.getFullYear();
         const newdate = year + "-" + month + "-" + day;
           const newCircuit = this.db.collection(`circuits`).doc(`${newdate}-${this.selectedCircuit}`)
-          .set({"timestamp":newdate ,"circuitDescription":`${this.circuitDescription}`,workout:
+          .set({"timestamp":newdate ,"circuitDescription":`${this.circuitDescription}`,"circuitName":`${this.circuitOptions}`,workout:
      [{workoutName: `${this.workoutName}`,
      sets: `${this.sets}`,
      seconds:`${this.seconds}`,

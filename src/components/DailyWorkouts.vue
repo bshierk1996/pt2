@@ -22,7 +22,8 @@
     >
     
         <b-card class="circuit-info">
-            <h1>{{ circuit.circuitDescription }}</h1>
+            <h3 class="circuitName">{{circuit.circuitName }}</h3>
+            <p class="workoutDesc">{{ circuit.circuitDescription }}</p>
             <p>{{ circuit.desc }}</p>
         </b-card>
 
@@ -37,6 +38,7 @@
                 <div class="workout-name">
                         <span>{{ index2 + 1 }}</span>
                         <h3>{{ workout.workoutName }}</h3>
+                        
                     </div>
                     <img class="workout-gif" :src="workout.url">
                     
@@ -77,12 +79,16 @@ export default {
             url: '',
             db: firebase.firestore(),
             retrievedData: [],
+            circuit: []
             
             
         }
     },
     mounted() {
-       this.displayWorkout()
+       this.displayWorkout(),
+    //    this.downloadURL(),
+       this.renderimg()
+       
     },
     computed: {
          ...mapGetters(['allFiles']),
@@ -110,18 +116,19 @@ export default {
                     console.log('item ref')
                     console.log(itemRef)
                     const url = `https://firebasestorage.googleapis.com/v0/b/keisha-fitness.appspot.com/o/${year}%2F${month}%2F${day}%2F${itemRef.name}?alt=media&token=b3818a3a-3924-4f44-bab0-a168cf2a0d0c`
-                    
-                    this.receivedImgs = [ ...this.receivedImgs, url ]
+                   const url2 =  `https://firebasestorage.googleapis.com/v0/b/keisha-fitness.appspot.com/o/${newdate}${this.retrievedData.circuit[1].workout.url}?alt=media&token=444844ea-6978-4f15-9081-f07a738ee6b0`
+                    this.receivedImgs = [ ...this.receivedImgs, url2 ]
                     // console.log(storageRef)
+                    console.log(this.receivedImgs)
                 });
             }).catch((error) => {
                 console.log(error)
             });
         },
         downloadURL(){
-            console.log('data:',this.retrievedData)
+            console.log('data:',this.circuit)
             // Create a reference to the file we want to download
-const imageRef = this.db.child("2020/"`${this.retrievedData.workout[0].url}`);
+const imageRef = this.db.child("2020/"`${this.circuit.workout.url}`);
 
 // Get the download URL
 imageRef.getDownloadURL().then(function(url) {
@@ -168,25 +175,60 @@ imageRef.getDownloadURL().then(function(url) {
             .then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
                 console.log('retrieving')
-                console.log(doc.data());
-                this.retrievedData = [ ...this.retrievedData, doc.data()]
+                console.log(doc.data().workout);
+                this.retrievedData = [ ...this.retrievedData, doc.data()];
+                this.circuit = [...this.retrievedData,doc.data().workout];
+                console.log('workouts----',this.circuit);
+                
             });
             })
             .catch((error) => {
             console.log("Error getting documents: ", error);
              });
-    }
+    },
+    renderimg(){
+        for(workout in this.receivevedData){
+            console.log('this is a workout')
+        }
+
+    },
        
         }
         
     }
 </script>
 
-<style >
-
-
+<style lang="css" >
 @import url('https://fonts.googleapis.com/css?family=Montserrat:900i&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+
+@media screen and(min-width: 700px) and (max-width: 810px) {
+    .circuitName{
+            font-family: 'Montserrat', sans-serif;
+            font-weight: bold;
+            font-size: 25px;
+
+
+    }
+    .workoutDesc{
+        font-size: 1px;
+    }
+    .workout-name h3{
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    justify-content: center;
+    background-color: #94f215;
+    padding-block: 20px;
+    margin-left: 100px;
+    margin-right: 100px;
+    padding-top:20px;
+    padding-bottom:20px;
+    font-size:20px;
+    padding: 0 10px;
+    }
+    
+}
 body {
     background: #f5f5f5;
     background-image: url('../assets/circle.svg'); 
@@ -245,6 +287,9 @@ body {
     margin-right: 100px;
     padding-top:20px;
     padding-bottom:20px;
+    font-size:20px;
+    padding: 0 10px;
+
 }
 .workout-name span {
     font-size: 20px;
@@ -256,4 +301,6 @@ body {
 .workout-name h3 {
     margin-bottom: 0;
 }
+
+
 </style>
