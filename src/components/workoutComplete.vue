@@ -34,7 +34,7 @@ data(){
     return{
 workoutName:'CORE X LOWER BODY',
 workoutTime: '00:44 min',
-date: ''
+date: '3/30/20'
 
 
     }
