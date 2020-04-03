@@ -198,11 +198,13 @@ import firebase, { storage } from 'firebase';
 import {mapGetters, mapActions} from 'vuex'
 // import {mapState} from 'vuex'
 //import fbConfig from './App.vue';
+
         const dateObj = new Date();
         const month = dateObj.getMonth() + 1; //months from 1-12
         const day = dateObj.getDate();
         const year = dateObj.getFullYear();
         const timestamp = year + "-" + month + "-" + day + '-';
+
   export default {
     name: 'admin',
     data() {
@@ -224,6 +226,7 @@ import {mapGetters, mapActions} from 'vuex'
         sets: '',
         description: '',
         workoutName:'',
+
         rest1: '',
         seconds1: '',
         sets1: '',
@@ -257,7 +260,11 @@ import {mapGetters, mapActions} from 'vuex'
             { id: 8, value: 'workout8', text: 'workout 8' },
             { id: 9, value: 'workout9', text: 'workout 9' },
               
-          ]
+          ],
+
+        timestamp: timestamp,
+        createdAt: new Date()
+
       }
     },
     methods:{
@@ -269,8 +276,12 @@ import {mapGetters, mapActions} from 'vuex'
         const month = dateObj.getMonth() + 1; //months from 1-12
         const day = dateObj.getDate();
         const year = dateObj.getFullYear();
+
         const newdate = year + "-" + month + "-" + day + '-';
         this.timestamp =newdate
+
+
+
        console.log(newdate)
         this.file = e.target.files[0];
         this.addFile(this.file)
@@ -308,6 +319,7 @@ import {mapGetters, mapActions} from 'vuex'
         //   })
         // })
       },
+
       update(){
          const dateObj = new Date();
         const month = dateObj.getMonth() + 1; //months from 1-12
@@ -342,6 +354,32 @@ import {mapGetters, mapActions} from 'vuex'
       }
       
         ]   },{merge:true} )
+      },
+
+      updateWorkoutField(){
+        const workoutData = {
+          rest: this.rest,
+          seconds: this.seconds,
+          sets:this.sets,
+          description: this.description,
+          workoutName:this.workoutName,
+          timestamp:this.timestamp,
+          createdAt: new Date()
+          
+        }
+        console.log(workoutData)
+        this.db.collection('fitness-images').add({
+          rest: this.rest,
+          seconds: this.seconds,
+          sets:this.sets,
+          description: this.description,
+          workoutName:this.workoutName,
+          timestamp: this.timestamp,
+          createdAt: new Date()
+
+           
+        })
+
       },
       
       ...mapActions(['addFile'])
