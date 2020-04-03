@@ -1,14 +1,14 @@
 <template>
     <div class="daily-workouts-container">
-       
-        <!-- <div v-for="file in allFiles" :key="file.name">
+<!--        
+         <div v-for="file in allFiles" :key="file.name">
             <h1>{{file.name}}</h1>
             <h1>{{file.name}}</h1>
             <div v-if="sendImg ==! '' "  class="urls">
                 <img :src="sendImg" alt="">
             </div>
            <h1 class="workout-title"></h1>
-        </div> -->
+        </div>  -->
 
     <h1 class="workout-title"></h1>
             <div v-for="(url, index) in receivedImgs" :key="`${index}`">

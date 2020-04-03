@@ -215,6 +215,7 @@ import {mapGetters, mapActions} from 'vuex'
         workoutImgUrl: '',
         workoutImgUrl1: '',
         workoutImgUrl2: '',
+       
         sendImg: '',
         db: firebase.firestore(),
         circuitDescription: '',
@@ -342,6 +343,7 @@ import {mapGetters, mapActions} from 'vuex'
       
         ]   },{merge:true} )
       },
+      
       ...mapActions(['addFile'])
       
     },
