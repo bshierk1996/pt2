@@ -22,6 +22,7 @@ import mobile from './components/mobileNav'
 import dashBoard from './components/dashboard'
 import admin from './components/adminPortal'
 import 'es6-promise/auto'
+import adminLogin from './components/adminLogin'
 import workoutSelect from './components/workoutSelect'
 import workoutComplete from './components/workoutComplete'
 import payment from './components/payment'
@@ -55,6 +56,7 @@ const router = new VueRouter({
     {path: '/dashboard', component: dashBoard},
     {path: '/admin',name:'admin', component: admin,  },
     // meta:{requiresAuth:true  }
+    {path:'/adminLogin',name:'adminLogin',component:adminLogin},
     {path: '/select',component:workoutSelect},
     {path: '/complete',component:workoutComplete},
     {path: '/payment', component:payment}

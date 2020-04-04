@@ -277,7 +277,7 @@ import {mapGetters, mapActions} from 'vuex'
         const day = dateObj.getDate();
         const year = dateObj.getFullYear();
 
-        const newdate = year + "-" + month + "-" + day + '-';
+        const newdate = year + "/" + month + "/" + day + '/';
         this.timestamp =newdate
 
 
@@ -300,7 +300,7 @@ import {mapGetters, mapActions} from 'vuex'
         const month = dateObj.getMonth() + 1; //months from 1-12
         const day = dateObj.getDate();
         const year = dateObj.getFullYear();
-        const newdate = year + "-" + month + "-" + day + '-';
+        const newdate = year + "/" + month + "/" + day + '/';
         //   let image = e.target.files[0]
         var imageRef = firebase.storage().ref(`${newdate}${this.workoutImgUrl[0].name}`).getDownloadURL()
         // imageRef.getDownloadURL()
@@ -325,24 +325,24 @@ import {mapGetters, mapActions} from 'vuex'
         const month = dateObj.getMonth() + 1; //months from 1-12
         const day = dateObj.getDate();
         const year = dateObj.getFullYear();
-        const newdate = year + "-" + month + "-" + day;
+        const newdate = year + "-" + month + "-" + day ;
           const newCircuit = this.db.collection(`circuits`).doc(`${newdate}-${this.selectedCircuit}`)
-          .set({"timestamp":newdate ,"circuitDescription":`${this.circuitDescription}`,"circuitName":`${this.circuitOptions}`,workout:
+          .set({"timestamp":newdate ,"circuitDescription":`${this.circuitDescription}`,workout:
      [{workoutName: `${this.workoutName}`,
      sets: `${this.sets}`,
      seconds:`${this.seconds}`,
      rests:`${this.rest}`,
      description:`${this.description}`,
      createdAt:Date(),
-     url: `${this.workoutImgUrl[0].name}`,
+     url: `${this.workoutImgUrl.name}`,
       },
-      {workoutName: `${this.workoutName}`,
+      {workoutName: `${this.workoutName1}`,
      sets: `${this.sets1}`,
      seconds:`${this.seconds1}`,
      rests:`${this.rest1}`,     
      description:`${this.description1}`,
      createdAt:Date(),
-     url: `${this.workoutImgUrl1[0].name}`,
+     url: `${this.workoutImgUrl1.name}`,
       },
       {workoutName: `${this.workoutName2}`,
      sets: `${this.sets2}`,
@@ -350,37 +350,13 @@ import {mapGetters, mapActions} from 'vuex'
      rests:`${this.rest2}`,     
      description:`${this.description2}`,
      createdAt:Date(),
-     url: `${this.workoutImgUrl2[0].name}`,
+     url: `${this.workoutImgUrl2.name}`,
       }
       
         ]   },{merge:true} )
       },
 
-      updateWorkoutField(){
-        const workoutData = {
-          rest: this.rest,
-          seconds: this.seconds,
-          sets:this.sets,
-          description: this.description,
-          workoutName:this.workoutName,
-          timestamp:this.timestamp,
-          createdAt: new Date()
-          
-        }
-        console.log(workoutData)
-        this.db.collection('fitness-images').add({
-          rest: this.rest,
-          seconds: this.seconds,
-          sets:this.sets,
-          description: this.description,
-          workoutName:this.workoutName,
-          timestamp: this.timestamp,
-          createdAt: new Date()
-
-           
-        })
-
-      },
+      
       
       ...mapActions(['addFile'])
       
