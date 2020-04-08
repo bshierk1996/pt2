@@ -285,11 +285,12 @@ import {mapGetters, mapActions} from 'vuex'
        console.log(newdate)
         this.file = e.target.files[0];
         this.addFile(this.file)
-          // console.log('this file is currently being shown')
+           console.log('this file is currently being shown')
          var storageRef = firebase.storage().ref(`${newdate}${this.file.name}`)
         let uploadFile = storageRef.put(this.file)
         
         setTimeout(() => {
+          console.log('++++++++++++++++')
           console.log(this.allFiles)
         }, 1200)
         
@@ -334,7 +335,7 @@ import {mapGetters, mapActions} from 'vuex'
      rests:`${this.rest}`,
      description:`${this.description}`,
      createdAt:Date(),
-     url: `${this.workoutImgUrl.name}`,
+     url: `${this.file.name}`,
       },
       {workoutName: `${this.workoutName1}`,
      sets: `${this.sets1}`,
@@ -342,7 +343,7 @@ import {mapGetters, mapActions} from 'vuex'
      rests:`${this.rest1}`,     
      description:`${this.description1}`,
      createdAt:Date(),
-     url: `${this.workoutImgUrl1.name}`,
+     url: `${this.workoutImgUrl1}`,
       },
       {workoutName: `${this.workoutName2}`,
      sets: `${this.sets2}`,
@@ -350,7 +351,7 @@ import {mapGetters, mapActions} from 'vuex'
      rests:`${this.rest2}`,     
      description:`${this.description2}`,
      createdAt:Date(),
-     url: `${this.workoutImgUrl2.name}`,
+     url: `${this.workoutImgUrl2  }`,
       }
       
         ]   },{merge:true} )
