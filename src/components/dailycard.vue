@@ -17,7 +17,7 @@
       These workouts are programmed to aid you in your journey of losing weight and toning in the convenience of your own home or at the gym. Each workout is designed for you to build muscle, speed your metabolism, lose fat and keep it off! This subscription gives you access to full, upper, lower body workouts alongside cardio and restorative circuits.
     </b-card-text>
 
-    <b-button href="#" variant="primary" class='button'><router-link to="/workouts"> Subsribe Now</router-link></b-button>
+    <b-button href="#"  class='butt'><router-link to="/workouts"> Subsribe Now</router-link></b-button>
   </b-card>
 </div>
 </template>
@@ -33,9 +33,9 @@ export default {
 
 
 <style>
-.button{
-color:#A2D618;
-border-color: #A2D618;
- 
+.butt{
+  background: #A2D618;
+  color: ivory;
+border: #A2D618;
 }
 </style>

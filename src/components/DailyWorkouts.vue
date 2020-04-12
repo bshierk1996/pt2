@@ -1,11 +1,32 @@
 <template>
     <div class="daily-workouts-container">
-    <h1 class="workout-title">{{ title }}</h1>
+        <h2>{{ allFiles }}</h2>
+        <img v-if="url" :src="url" alt="">
+        <!-- <div v-for="file in allFiles" :key="file.name">
+            <h1>{{file.name}}</h1>
+            <h1>{{file.name}}</h1>
+            <div v-if="sendImg ==! '' "  class="urls">
+                <img :src="sendImg" alt="">
+            </div>
+
+           <h1 class="workout-title"></h1>
+        </div> -->
+        <button @click="fbGet">fbget</button>
+        <button @click="downloadURL">show url</button>
+        <button @click="displayWorkout">wokout</button>
+
+    <h1 class="workout-title"></h1>
+            <!-- <img v-if="receivedImgs !==null " :src="receivedImgs[0]" alt=""  /> -->
+            <!-- <div v-for="(url, index) in receivedImgs" :key="`${index}`">
+                <img :src="url" alt="">
+            </div> -->
+
       <div 
         v-for="(circuit, index) in circuitsProp"
         :key="`circuit-${index}`"
         class="daily-circuit"
     >
+    
         <b-card class="circuit-info">
             <h1>{{ circuit.name }}</h1>
             <p>{{ circuit.desc }}</p>
@@ -29,14 +50,155 @@
             </b-row>
         </b-card>
       </div>
+      <h1>{{}}</h1>
+        <!-- <img v-if="receivedImgs !== ''" :src="getImgUrl" alt=""  /> -->
     </div>
 </template>
 
 <script>
+import  firebase, { firestore } from 'firebase/app';
+import 'firebase/firestore';
+import 'firebase/auth';
+import 'firebase/storage';
+import {mapGetters} from 'vuex';
+import sendImg from './adminPortal';
+const dateObj = new Date();
+        const month = dateObj.getMonth() + 1; //months from 1-12
+        const day = dateObj.getDate();
+        const year = dateObj.getFullYear();
+
+        const todaysTimeStamp = year + "/" + month + "/" + day + '/';
+        console.log(todaysTimeStamp)
+
 export default {
+    //  computed: mapGetters(['sendImg']),
     props: ['circuitsProp', 'title'],
     name: 'DailyWorkouts',
-}
+    data() {
+        return {
+            receivedImgs: [],
+            testImg: '',
+            url: '',
+            db: firebase.firestore(),
+            
+            
+        }
+    },
+    mounted() {
+        setTimeout(() => {
+            console.log(this.allFiles)
+        }, 1500)
+        this.fbGet()
+        // this.downloadURL()
+
+    },
+    computed: {
+         ...mapGetters(['allFiles']),
+    },
+    methods:{
+        fbGet(){
+            const dateObj = new Date();
+            const month = dateObj.getMonth() + 1; //months from 1-12
+            const day = dateObj.getDate();
+            const year = dateObj.getFullYear();
+            const newdate = year + "/" + month + "/" + day + '/';
+            
+          const  fbstorage = firebase.storage()
+          const storageRef = fbstorage.ref()
+
+
+
+             const listRef = storageRef.child(newdate)
+
+            //  const pathReference = storage.ref(newdate);
+            listRef.listAll().then((res) => {
+                console.log('top level')
+                console.log(res)
+                res.prefixes.forEach((folderRef) => {
+                    console.log('folder ref')
+                    console.log(folderRef)
+                });
+                res.items.forEach((itemRef) => {
+                    console.log('item ref')
+                    console.log(itemRef)
+                    const url = `https://firebasestorage.googleapis.com/v0/b/keisha-fitness.appspot.com/o/${year}%2F${month}%2F${day}%2F${itemRef.name}?alt=media&token=b3818a3a-3924-4f44-bab0-a168cf2a0d0c`
+                    
+                    this.receivedImgs = [ ...this.receivedImgs, url ]
+                    // console.log(storageRef)
+                });
+            }).catch((error) => {
+                console.log(error)
+            });
+        },
+
+
+        downloadURL(){
+            const dateObj = new Date();
+            const month = dateObj.getMonth() + 1; //months from 1-12
+            const day = dateObj.getDate();
+            const year = dateObj.getFullYear();
+            const newdate = year + "/" + month + "/" + day + '/';
+        
+
+             const storage = firebase.storage();
+             const pathReference = storage.ref(this.allFiles.name)
+
+            this.allFiles.map(item => {
+                const storage = firebase.storage();
+                const pathReference = storage.ref(this.allFiles.name);
+                console.log(item.name)
+                const imgref = pathReference.child(item.name);
+                imgref.getDownloadURL().then(function(url){
+                    console.log(url)
+                })
+            })
+        },
+        displayWorkout(){
+             const dateObj = new Date();
+            const month = dateObj.getMonth() + 1; //months from 1-12
+            const day = dateObj.getDate();
+            const year = dateObj.getFullYear();
+            const newdate = year + "/" + month + "/" + day + '/';
+
+            this.db.collection('fitness-images').where('timestamp','==', todaysTimeStamp).get().then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            // doc.data() is never undefined for query doc snapshots
+            console.log(doc.id, " => ", doc.data());
+        });
+    })
+    .catch(function(error) {
+        console.log("Error getting documents: ", error);
+    });
+
+
+
+
+
+
+        
+            
+        }
+
+            // this.allFiles.map(item => {
+            //     const storage = firebase.storage();
+            //     const pathReference = storage.ref(this.allFiles.name);
+
+            //     const imgref = pathReference.child(item.name);
+            //     imgref.getDownloadURL().then((url) => {
+            //         console.log('URL: ')
+            //         console.log(url)
+            //        this.receivedImgs = [ ...this.receivedImgs, url ]
+            //         var storageRef = firebase.storage().ref(`${newdate}`);
+            //         console.log(newdate)
+                   
+            //     })
+            // })
+        }
+    }
+
+
+
+
 </script>
 
 <style>

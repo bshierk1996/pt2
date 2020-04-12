@@ -1,58 +1,65 @@
 <template>
-    <div class="container-fluid">
-      <form>
-      <div class="form-row">
+
+    <div class="container-fluid SignupForm">
+      
+      <form action="/charge" method="POST">
+      
+      <div class="form-row Fname">
         <div class="col-md-4 mb-3">
           <label for="validationDefault01">First name</label>
-          <input type="text" class="form-control firstname" id="validationDefault01" value="" required placeholder="firstname" v-model="input.firstname" />
+          <input type="text" class="form-control firstname"  value="" required placeholder="firstname" v-model="firstname" />
         </div>
         <div class="col-md-4 mb-3">
-          <label for="validationDefault02">Last name</label>
-          <input type="text" class="form-control lastname" id="validationDefault02" value="" required placeholder="lastname"  v-model="input.lastname" /> 
+          <label >Last name</label>
+          <input type="text" class="form-control lastname"  value="" required placeholder="lastname"  v-model="lastname" /> 
+        </div>
+        
+        <div class="col-md-4 mb-3">
+          <label >Email Address</label>
+          <input type="text" class="form-control email"  value="" required placeholder="Email Address" v-model="email" />
+        </div>
         </div>
         <div class="col-md-4 mb-3">
-          <label for="validationDefaultemail" placeholder="email address">email address</label>
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text" id="inputGroupPrepend2"></span>
-            </div>
-            <input type="text" class="form-control" id="validationDefaultUsername"  aria-describedby="inputGroupPrepend2" required v-model="input.email" />
-          </div>
+          <label >Password</label>
+          <input type="text" class="form-control password" value="" required placeholder="password" v-model="password" />
         </div>
-      </div>
-      <div class="form-row">
-        <div class="col-md-6 mb-3">
-          <label for="validationDefault03">address</label>
-          <input type="text" class="form-control" id="validationDefault03" required v-model="input.address"/>
+        <div class="">
+        <div class="col-md-4 mb-3">
+          <label >address</label>
+          <input type="text" class="form-control"  required v-model="address"/>
         </div>
-      </div>
-        <div class="form-row">
-        <div class="col-md-3 mb-3">
-          <label for="validationDefault03">City</label>
-          <input type="text" class="form-control" id="validationDefault03" required v-model="input.city"/>
         </div>
-        <div class="col-md-3 mb-3">
-          <label for="validationDefault04">State</label>
-          <input type="text" class="form-control"  required v-model="input.state"/>
+        <div >
+        <div class="col-md-4 mb-3">
+          <label >City</label>
+          <input type="text" class="form-control"  required v-model="city"/>
+        </div>
+        <div class="col-md-4 mb-3">
+          <label >State</label>
+          <input type="text" class="form-control"  required v-model="state"/>
+        </div>
+        <div class="col-md-1 mb-3">
+          <label >Zip</label>
+          <input type="text" class="form-control" required v-model="zip"/>
         </div>
         <div class="col-md-3 mb-3">
-          <label for="validationDefault05">Zip</label>
-          <input type="text" class="form-control" id="validationDefault05" required v-model="input.zip"/>
+          <label >Card number</label>
+          <input type="text" class="form-control" required v-model="credit"/>
         </div>
         <div class="col-md-3 mb-3">
-          <label for="validationDefault05">credit card</label>
-          <input type="text" class="form-control" id="validationDefault05" required v-model="input.credit"/>
+          <label > ReEnter Card number</label>
+          <input type="text" class="form-control" required v-model="credit"/>
         </div>
-        <div class="col-md-3 mb-3">
-          <label for="validationDefault05">cvc</label>
-          <input type="text" class="form-control" id="validationDefault05" required v-model="input.cvc"/>
+        <div class="col-md-2 mb-3">
+          <label >expiration date</label>
+          <input type="text" class="form-control"  required v-model="cvc"/>
         </div>
-        <div class="col-md-3 mb-3">
-          <label for="validationDefault05">experation date</label>
-          <input type="text" class="form-control" id="validationDefault05" required v-model="input.experation"/>
+        <div class="col-md-1 mb-3">
+          <label >CVC</label>
+          <input type="text" class="form-control" required v-model="expiration"/>
         </div>
-      </div>
-      <div class="form-group">
+        </div>
+        <div class="form-group">
         <div class="form-check">
           <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required /> 
           <label class="form-check-label" for="invalidCheck2">
@@ -60,57 +67,131 @@
           </label>
         </div>
       </div>
-      <button class="btn btn-primary" type="submit" v-on:click="login()">Submit form</button>
+      <div class="btn btn-primary" v-on:click="submitUser()">Submit form</div>
+      
     </form>
+
+
   </div>
  
 </template>
 
 
 <script>
+ 
+
+import  firebase from 'firebase';
+  // import Stripe from 'stripe';
+ //import { stripeKey, stripeOptions } from './stripeConfig.json'
+//  import { Card, createToken } from 'vue-stripe-elements-plus'
 export default {
+  mounted(){
+  function payment() {
+    var self=this;
+    self.stripe= Stripe(self.spk);
+    self.card = self.stripe.elements().create('card');
+    self.card.mount(self.$refs.card);
+  }
+  },
  
         name: 'signupData',
         data() {
             return {
-                input: {
-                   firstname:"",
-                    lastnme:"",
-                    City:"",
-                    State:"",
-                    Zip:"",
-                    credit:"",
-                    cvc:"",
-                    experation:"",
-                }
-            }
+                
+                   firstname: '',
+                    lastname: '',
+                    city: '',
+                    state: '',
+                    zip: '',
+                    credit: '',
+                    cvc: '',
+                    expiration: '',
+                    password: '',
+                    email:'',
+                    address:'',
+                    db: firebase.firestore(),
+                  
+                };
         },
         methods: {
-            login() {
-                if(this.input.username != "" && this.input.password != "") {
-                    if(this.input.username == this.$parent.mockAccount.username && this.input.password == this.$parent.mockAccount.password) {
-                        this.$emit("authenticated", true);
-                        this.$router.replace({ name: "secure" });
-                    } else {
-                        // console.log("The username and / or password is incorrect");
-                    }
-                } else {
-                    // console.log("A username and password must be present");
-                }
-            }
-        }
-    }
+            submitUser(e) {
+              firebase.auth().
+              createUserWithEmailAndPassword(this.email, this.password).then(
+                // Login has been created
+                returnedLogin => {
+                  // Get the returned login data
+                  console.log('Successfully created user')
+                  alert(`created user for ${this.email} and ${this.password}`)
+                  const userData = returnedLogin.user;
 
+                  // Create entry in the database from the login info
+                  this.db.collection('users').add({
+                    id: userData.uid, // This is the ID generated by the Log In
+                    email: userData.email, // This is the email generated by the Log In (same as form)
+                    name: `${this.firstname} ${this.lastname}`, // name (from form data)
+                    password: this.password
+                  })
+                }
+              )
+              .catch((error) => {
+                alert(`Could not sign up: ${error.message}`);
+                
+              })
+ 
+       },
+       
+    
+}
+      
+  
+    
+}
+    
 
 </script>
 
 
     
 
-<>
+
 <style>
 .container-fluid{
-  margin-top: 40px;
+  margin-right:100%;
 }
+.Fname{
+  padding-top: 6%;
+}
+form{
+  
+
+}
+.StripeElement {
+  box-sizing: border-box;
+
+  height: 40px;
+
+  padding: 10px 12px;
+
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background-color: white;
+
+  box-shadow: 0 1px 3px 0 #e6ebf1;
+  -webkit-transition: box-shadow 150ms ease;
+  transition: box-shadow 150ms ease;
+}
+
+.StripeElement--focus {
+  box-shadow: 0 1px 3px 0 #cfd7df;
+}
+
+.StripeElement--invalid {
+  border-color: #fa755a;
+}
+
+.StripeElement--webkit-autofill {
+  background-color: #fefde5 !important;
+}
+
 
 </style>
