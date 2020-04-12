@@ -74,7 +74,8 @@ export default {
 }
 body{
   font-family: Arial, Helvetica, sans-serif;
-  line-height: 1.4
+  line-height: 1.4;
+   background-color: #fff;
 }
 
 @media screen and (max-width: 800px) {
@@ -85,6 +86,10 @@ body{
   @media screen and (max-width: 799px) {
   .mobile-nav-row {
     display: contents;
+      box-shadow: 0px 5px 5px 0 rgba(0, 0, 0, 0.2);
+        background-image:linear-gradient(to right,#94f215,#fa58a3) ;
+
+
   }
 
 }

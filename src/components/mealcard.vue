@@ -3,7 +3,6 @@
    <div>
   <b-card
   h-100
-    
     img-alt="Image"
     img-top
     tag="article"
@@ -39,12 +38,16 @@ export default {
 <style>
 .go-btn{
   background: #A2D618;
-  color: ivory;
 border: #A2D618;
 
 }
 a{
   color: ivory;
 }
+b-card{
+  border-color: transparent;
+  background-color: transparent;
+}
+
 
 </style>
