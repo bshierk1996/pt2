@@ -73,7 +73,9 @@ export default {
 .card-body .card {
   border: none;
 }
-
+body{
+  background-color: #fff
+}
 /* .card {
   border: none;
 } */
