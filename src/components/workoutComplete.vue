@@ -14,11 +14,13 @@
             <p class="secondaryText-date" >Date</p>
         </b-row>
         </b-container>
-
+<b-button squared class="dismiss">DISMISS</b-button>
     </b-container>
+    
     <b-container class="dynamicResult">    
 
     </b-container>
+    
 
 
 
@@ -36,6 +38,18 @@ date: '3/30/20'
 
 
     }
+},methods:{
+    newDate(){
+        const dateObj = new Date();
+        const month = dateObj.getMonth() + 1; //months from 1-12
+        const day = dateObj.getDate();
+        const year = dateObj.getFullYear();
+        const newdate = year + "/" + month + "/" + day;
+        newdate = this.date
+    }
+},
+mounted(){
+    this.newDate()
 }
 }
 </script>
@@ -72,9 +86,9 @@ p{
     color: black;
     font-family: 'Montserrat', sans-serif;
     font-style: normal;
-    margin-top: -18px;
+    margin-top: -1px;
     font-weight: bold;
-        margin-right: 15px;
+        margin-right: 75px;
 
 
 }
@@ -87,8 +101,11 @@ p{
     font-style: normal;
     margin-top: -18px;
     font-weight: bold;
-    margin-right: 15px;
+    margin-right: 75px;
     font-size: 16px;
+    /* margin-left: 15px; */
+            font-size: 12px;
+
 }
 .secondaryText-date{
     color: black;
@@ -96,9 +113,20 @@ p{
     font-style: normal;
     margin-top: -18px;
     font-weight: bold;
-    margin-left: 20px;
-    font-size: 16px;
+    margin-left: 40px;
+    font-size: 12px;
 }
 .workoutName{}
+.dismiss{
+    background-color:#94f215;
+    border-color: #94f215;
+    font-style: italic;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    margin-top: 30px;
+
+}
 
 </style>
