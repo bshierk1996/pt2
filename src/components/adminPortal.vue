@@ -336,7 +336,11 @@ import {mapGetters, mapActions} from 'vuex'
      description:`${this.description}`,
      createdAt:Date(),
 <<<<<<< HEAD
+<<<<<<< HEAD
      url: `${this.file.name}`,
+=======
+     url: `${this.workoutImgUrl[0].name}`,
+>>>>>>> parent of 21526df... rendering kinda
 =======
      url: `${this.workoutImgUrl[0].name}`,
 >>>>>>> parent of 21526df... rendering kinda
@@ -348,7 +352,11 @@ import {mapGetters, mapActions} from 'vuex'
      description:`${this.description1}`,
      createdAt:Date(),
 <<<<<<< HEAD
+<<<<<<< HEAD
      url: `${this.workoutImgUrl1}`,
+=======
+     url: `${this.workoutImgUrl1[0].name}`,
+>>>>>>> parent of 21526df... rendering kinda
 =======
      url: `${this.workoutImgUrl1[0].name}`,
 >>>>>>> parent of 21526df... rendering kinda
@@ -360,7 +368,11 @@ import {mapGetters, mapActions} from 'vuex'
      description:`${this.description2}`,
      createdAt:Date(),
 <<<<<<< HEAD
+<<<<<<< HEAD
      url: `${this.workoutImgUrl2  }`,
+=======
+     url: `${this.workoutImgUrl2[0].name}`,
+>>>>>>> parent of 21526df... rendering kinda
 =======
      url: `${this.workoutImgUrl2[0].name}`,
 >>>>>>> parent of 21526df... rendering kinda
